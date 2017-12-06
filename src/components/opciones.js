@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './opciones.css';
 
-var nomusuario;
+var nomusuario= "";
  class opciones extends Component {
      state = {  }
      render() {
