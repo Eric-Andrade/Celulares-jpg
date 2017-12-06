@@ -1,6 +1,10 @@
  1/Diciembre/2017
   Comentar: Ctrl+ }
-
+node -v
+npm -v
+npm i -g yarn
+yarn -v
+yard start
  <div>
  </div>
 
@@ -9,9 +13,9 @@
  Remplazar: Ctrl+h
  git add -A 
  git commit -m""
- git push origin master
+ subir: git push origin master
 
-git pull origin master
+traer ultima version : git pull origin master
 
 Botones: {/*<nav className="navbar navbar-default">
                   <div className="container-fluid">
