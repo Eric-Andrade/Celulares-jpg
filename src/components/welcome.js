@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Carousel } from 'react-bootstrap'
+import Iniciosesion from './iniciosesion';
 import './welcome.css';
 var welcome="¡Bienvenido!"
 var empresa="Celulares-JPG"
@@ -7,35 +7,27 @@ var Tel1="9703486"
 var Tel2="9708612"
 var Correo="celularesjpg@gmail.com"
 
-
 class Welcome extends Component {
 
     render() {
         return (
-            <div>
- <Carousel>
-    <Carousel.Item>
-      <img width={900} height={500} alt="900x500" src="../assets/carousel1.jpg" />
-      <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-      <img width={900} height={500} alt="900x500" src="../assets/carousel2.jpg" />
-      <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-      <img width={900} height={500} alt="900x500" src="../assets/carousel3.jpg" />
-      <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
-  </Carousel>   
+            <div className="container">
+                <h1 className='text-center'>{welcome}</h1>
+                   <div className="container">
+                    <div className= 'text-right'>
+                    <Iniciosesion/>
+                    </div>
+                     </div>
+                <hr/><br/><br/>
+
+                <hr/>
+                  <div >
+                      <h3 className='text-center'>{empresa}</h3>
+                        <h4 className='text-left'>Telefono1: {Tel1}</h4>
+                        <h4 className='text-right'> <span className="glyphicon glyphicon-envelope"></span> {Correo}</h4>
+                      <h4 className='text-left'>Telefono2: {Tel2}</h4>
+                  </div>    
+              
             </div>
         );
     }
