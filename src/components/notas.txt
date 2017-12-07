@@ -68,3 +68,11 @@ Botones: {/*<nav className="navbar navbar-default">
                   </div>
                 </nav>
                 */}
+
+Bootstrap
+
+12 numero mayor
+xs=extra small=telefonos chicos
+sm=small=telefonos smart
+md=medium=computadoras standard
+lg=large=mayor  4000px

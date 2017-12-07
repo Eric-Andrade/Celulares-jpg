@@ -26,7 +26,10 @@ class Welcome extends Component {
                         <h4 className='text-left'>Telefono1: {Tel1}</h4>
                         <h4 className='text-right'> <span className="glyphicon glyphicon-envelope"></span> {Correo}</h4>
                       <h4 className='text-left'>Telefono2: {Tel2}</h4>
-                  </div>    
+                  </div> 
+
+                     {/*link para ver opciones*/}
+                     
               
             </div>
         );
