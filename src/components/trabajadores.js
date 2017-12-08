@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import './trabajadores.css';
-var apellido={width:'25%'};
-
+import Trabajadores from 'Trabajadores.json';
+var apellido={width:'23%'};
+var nombre={width:'20%'};
+var sueldo={width:'15%'};
     class trabajadores extends Component {
-        state = {  }
+        state = { 
+            // Propiedades
+            T: Trabajadores,
+            Produccion: ""
+         }
         render() {
             return (
                 <div>
@@ -12,6 +18,10 @@ var apellido={width:'25%'};
                         <h2 className='text-center'>Trabajadores</h2>
                         <input className="form-control" id="myInput" type="text" placeholder="Buscar.."/>
                         <br/>
+
+                        {
+                            this.state.T.map
+                        }
                         <table className="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -34,45 +44,56 @@ var apellido={width:'25%'};
                     <div className="container">
                     <h2>Gestionar Trabajadores</h2>
                         <form>
-                            <div className="form-group input_width">
+                            <div className="form-group " style={nombre}>
                                 <label for="nom">Nombre:</label>
                                 <input type="text" className="form-control" id="nom"/>
                             </div>
-                            <div className="form-group" style={apellido}>
+                            <div className="form-group input_width">
                                 <label for="ape">Apellidos:</label>
                                 <input type="text" className="form-control" id="ape"/>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group"style={sueldo}>
                                 <label for="fena">Fecha de Nacimiento:</label>
                                 <input type="text" className="form-control" id="fena"/>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group"style={sueldo}>
                                 <label for="fead">Fecha de Admisión:</label>
                                 <input type="text" className="form-control" id="fead"/>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group" style={sueldo}>
                                 <label for="su">Sueldo:</label>
                                 <input type="text" className="form-control" id="su"/>
                             </div>
-                            <div className="form-group input_width">
+                            <div className="form-group " style={apellido}>
                                 <label for="pu">Puesto:</label>
                                 <input type="text" className="form-control" id="pu"/>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group"style={nombre}>
                                 <label for="pl">Placa:</label>
                                 <input type="text" className="form-control" id="pl"/>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group"style={nombre}>
                                 <label for="cu">Curp:</label>
                                 <input type="text" className="form-control" id="cu"/>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group input_width">
                                 <label for="suc">Sucursal:</label>
                                 <input type="text" className="form-control" id="suc"/>
                             </div>
                             
                         </form>
                     </div>
+
+                   <div className='conteiner-fluid'>
+                   
+
+                                <a href="#" className="btn btn-default" role="button">Crear</a>
+                                <a href="#" className="btn btn-default" role="button">Actualizar</a>
+                                <a href="#" className="btn btn-default" role="button">Eliminar</a>
+
+                   </div>
+
+
 
                 </div>
                 

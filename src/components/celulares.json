@@ -1,0 +1,39 @@
+// Celulares
+
+[
+    {
+        "IdCelular":" ",
+        "Marca": " ",
+        "Modelo": " ",
+        "Ensamblado":" " ,
+        "Precio": " "
+    },
+    {
+        "IdCelular":" ",
+        "Marca": " ",
+        "Modelo": " ",
+        "Ensamblado":" " ,
+        "Precio": " "
+    },
+    {
+        "IdCelular":" ",
+        "Marca": " ",
+        "Modelo": " ",
+        "Ensamblado":" " ,
+        "Precio": " "
+    },
+    {
+        "IdCelular":" ",
+        "Marca": " ",
+        "Modelo": " ",
+        "Ensamblado":" " ,
+        "Precio": " "
+    },
+    {
+        "IdCelular":" ",
+        "Marca": " ",
+        "Modelo": " ",
+        "Ensamblado":" " ,
+        "Precio": " "
+    }
+]

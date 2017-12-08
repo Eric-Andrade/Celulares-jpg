@@ -1,0 +1,38 @@
+// Sucursales
+[
+    {
+        "IdSucursal": "",
+        "Ciudad": " ",
+        "Pais": " ",
+        "Direccion": " ",
+        "Telefono": " "
+    },
+    {
+        "IdSucursal": "",
+        "Ciudad": " ",
+        "Pais": " ",
+        "Direccion": " ",
+        "Telefono": " "
+    },
+    {
+        "IdSucursal": "",
+        "Ciudad": " ",
+        "Pais": " ",
+        "Direccion": " ",
+        "Telefono": " "
+    },
+    {
+        "IdSucursal": "",
+        "Ciudad": " ",
+        "Pais": " ",
+        "Direccion": " ",
+        "Telefono": " "
+    },
+    {
+        "IdSucursal": "",
+        "Ciudad": " ",
+        "Pais": " ",
+        "Direccion": " ",
+        "Telefono": " "
+    }
+]
