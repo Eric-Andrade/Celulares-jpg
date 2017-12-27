@@ -13,7 +13,7 @@ yard start
  Remplazar: Ctrl+h
  git add -A 
  git commit -m""
- subir: git push origin master
+ subir: git push or igin master
 
 traer ultima version : git pull origin master
 
