@@ -59,42 +59,157 @@ var Tinicial=
 ]
     class trabajadores extends Component {
         state = { 
-            T: Tinicial
-
-            
+            T: Tinicial,
+            row: {
+                    ID: 0,
+                    Curp: "",
+                    Nombre: "",
+                    Apellidos: "",
+                    FechaNacimiento: "",
+                    FechaAdmision: "",
+                    Sueldo: "",
+                    Puesto: "" 
+                },
+            toogleform : true,
+            id: 5,
+            id2: null,
+            mandar: null
          }
-    
-      
-        
-        
+
+         refresh =()=>{
+            this.setState({
+                T:Tinicial
+            })
+         }
+         change =(event)=>{
+            var row = this.state.row;
+            row[event.target.name] = event.target.value.toUpperCase();
+            this.setState({
+                row, 
+            })
+         }
+
          check=(idcheck)=> {
             
             var T=this.state.T;
             var ext= T.length;
-            // var mandar=idcheck-1;
-            console.log(idcheck)
+            var mandar=idcheck-1;
+            // console.log(idcheck)
  
             if (ext!=idcheck){
-                for(var x=1;x=idcheck;x++){
+                for(var x=1;x!=idcheck;x++){
                 document.getElementById('checkbox'+x).checked = false;
-                console.log("Desactivado= ",x)
+                // console.log("Desactivado= ",x)
                 }
             }
             if(ext===idcheck){
             var exte = ext-1; 
             for(exte; exte!=0;exte--){
                 document.getElementById('checkbox'+exte).checked = false;
-                console.log("Desactivado= ",exte)
+                // console.log("Desactivado= ",exte)
+
+            }
             }
             for(ext; ext!=idcheck; ext--){
                 document.getElementById('checkbox'+ext).checked = false;
-                console.log("Desactivado= ",ext)
+                // console.log("Desactivado= ",ext)
+
             }
+            if(document.getElementById('checkbox'+idcheck).checked){
+                this.Traer(mandar);
+
             }
 
          }
 
+        //  PARA CREAR
+        crear= ()=>{
+            var ids=this.state.id+1;
+            this.setState({
+                id2: ids
+            })
+            let row = {
+                ID: ids,
+                Curp: this.state.row.Curp,
+                Nombre: this.state.row.Nombre,
+                Apellidos: this.state.row.Apellidos,
+                FechaNacimiento: this.state.row.FechaNacimiento,
+                FechaAdmision: this.state.row.FechaAdmision,
+                Sueldo: this.state.row.Sueldo,
+                Puesto: this.state.row.Puesto 
+            }
+                var equis=this.state.T.concat([row])
+                Tinicial=equis
+                this.refresh()
+                    this.setState({
+                        cambiaragg:1,id:ids
+                    })
+                    this.restaurarForm()
+        }
+        //  RESTAURAR FORMULARIO
+        restaurarForm = () =>{
+            let rowvar = {
+                ID: null,
+                Curp: "",
+                Nombre: "",
+                Apellidos: "",
+                FechaNacimiento: "",
+                FechaAdmision: "",
+                Sueldo: "",
+                Puesto: "" 
+            }
+            this.setState({
+               row: rowvar, toogleform: true
+            })
+        }
 
+        // PARA TRAER
+        Traer =(mandar)=>{
+            var T=this.state.T;
+            var convertir=JSON.stringify(T);
+            var obj=JSON.parse(convertir);
+            var idacttra=obj[mandar].ID
+            var Curpacttra=obj[mandar].Curp
+            var Nombreacttra=obj[mandar].Nombre
+            var Apellidosacttra=obj[mandar].Apellidos
+            var FechaNacimientoacttra=obj[mandar].FechaNacimiento
+            var FechaAdmisionacttra=obj[mandar].FechaAdmision
+            var Sueldoacttra=obj[mandar].Sueldo
+            var Puestoacttra=obj[mandar].Puesto
+
+            let row = {
+                ID: idacttra,
+                Curp: Curpacttra,
+                Nombre: Nombreacttra,
+                Apellidos: Apellidosacttra,
+                FechaNacimiento: FechaNacimientoacttra,
+                FechaAdmision: FechaAdmisionacttra,
+                Sueldo: Sueldoacttra,
+                Puesto: Puestoacttra 
+            }
+            this.setState({
+                row
+            })
+        }
+        // ACTUALIZAR
+
+        actualizar=()=>{
+            console.log("cambio")
+            var mandar= this.state.mandar
+            let row = {
+                ID: this.state.row.ID ,
+                Curp: this.state.row.Curp,
+                Nombre: this.state.row.Nombre,
+                Apellidos: this.state.row.Apellidos,
+                FechaNacimiento: this.state.row.FechaNacimiento,
+                FechaAdmision: this.state.row.FechaAdmision,
+                Sueldo: this.state.row.Sueldo,
+                Puesto: this.state.row.Puesto  
+            }
+            this.state.T[mandar]=row
+            console.log(this.state.T)
+        }
+        
         render() {
             return (
                 <div>
@@ -109,6 +224,7 @@ var Tinicial=
                             <thead>
                                 <tr>
                                 <th></th>
+                                <th>ID</th>
                                 <th>Curp</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
@@ -129,6 +245,7 @@ var Tinicial=
                                     <input type="checkbox" className="custom-control-input desc" id={'checkbox'+iE} onClick={()=>this.check(iE)}/>
                                     <span className="custom-control-indicator" id={'checkbox'+iE} onClick={()=>this.check(iE)}></span>
                                 </label></td>
+                                <td>{t.ID}</td>
                                 <td>{t.Curp}</td>
                                 <td>{t.Nombre}</td>
                                 <td>{t.Apellidos}</td>
@@ -155,47 +272,48 @@ var Tinicial=
 
                    
                             <div className="col-xs-4">
-                                <label for="ex1">Nombre</label>
-                                <input className="form-control" id="ex1" type="text"/>
-                                <label for="ex1">Apellidos</label>
-                                <input className="form-control" id="ex1" type="text"/>
-                                <label for="ex1">Puesto</label>
-                                <input className="form-control" id="ex1" type="text"/>
+                                <label htmlFor="ex1">Nombre</label>
+                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text"/>
+                                <label htmlFor="ex1">Apellidos</label>
+                                <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text"/>
+                                <label htmlFor="ex1">Puesto</label>
+                                <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text"/>
                             </div>
                             <div className="col-xs-3">
-                                <label for="ex2">Fecha de Nacimiento</label>
-                                <input className="form-control" id="ex2" type="text"/>
+                                <label htmlFor="ex2">Fecha de Nacimiento</label>
+                                <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento" onChange={this.change} type="text"/>
 
-                                <label for="ex2">Fecha de Admisión</label>
-                                <input className="form-control" id="ex2" type="text"/>
-
-                                <label for="ex2">Sucursal</label>
-                                <input className="form-control" id="ex2" type="text"/>
+                                <label htmlFor="ex2">Fecha de Admisión</label>
+                                <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision" onChange={this.change} type="text"/>
+                               
                             </div>
                             <div className="col-xs-2">
-                                <label for="ex3">Curp</label>
-                                <input className="form-control" id="ex3" type="text"/>
-                                <label for="ex3">Sueldo</label>
-                                <input className="form-control" id="ex3" type="text"/>
-                               
+                                <label htmlFor="ex3">Curp</label>
+                                <input className="form-control" value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text"/>
+                                <label htmlFor="ex3">Sueldo</label>
+                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text"/>
+                                <input className="form-control" value={this.state.row.ID} name="ID" id="ID" onChange={this.change} type="hidden"/>
                             </div>
                     </div>
                     <div className='conteiner-fluid'>
                    
 
-                                <a href="#" className="btn btn-default" role="button">Crear</a>
-                                <a href="#" className="btn btn-default" role="button">Actualizar</a>
+                                {/* <a href="#" className="btn btn-default" role="button">Crear</a> */}
+                                {/* <a href="#" className="btn btn-default" role="button">Actualizar</a> */}
+                                <button type="button"  className="btn btn-default" onClick={this.crear.bind()}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
+                                <button type="button"  className="btn btn-default" onClick={this.actualizar.bind()}>Cancelar</button>
                                 <a href="#" className="btn btn-default" role="button" >Eliminar</a>
 
                    </div>
                                 </center>
                              
+
                           </div>
                        </div>
                        
                 
             );
-        }
+        } 
     }
     
     export default trabajadores;
