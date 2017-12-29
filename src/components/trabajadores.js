@@ -122,13 +122,18 @@ var Tinicial=
 
          }
 
+        // getTrabajadores () {
+        //     this.setState({ T: Tinicial })
+        // } 
+
         //  PARA CREAR
         crear= ()=>{
             var ids=this.state.id+1;
             this.setState({
                 id2: ids
-            })
-            let row = {
+            });
+
+            var row = {
                 ID: ids,
                 Curp: this.state.row.Curp,
                 Nombre: this.state.row.Nombre,
@@ -165,6 +170,7 @@ var Tinicial=
 
         // PARA TRAER
         Traer =(mandar)=>{
+            this.setState({mandar})
             var T=this.state.T;
             var convertir=JSON.stringify(T);
             var obj=JSON.parse(convertir);
@@ -177,7 +183,7 @@ var Tinicial=
             var Sueldoacttra=obj[mandar].Sueldo
             var Puestoacttra=obj[mandar].Puesto
 
-            let row = {
+            var row = {
                 ID: idacttra,
                 Curp: Curpacttra,
                 Nombre: Nombreacttra,
@@ -195,9 +201,9 @@ var Tinicial=
 
         actualizar=()=>{
             console.log("cambio")
-            var mandar= this.state.mandar
-            let row = {
-                ID: this.state.row.ID ,
+            var mandar = this.state.mandar;
+            var row = {
+                ID: this.state.row.ID,
                 Curp: this.state.row.Curp,
                 Nombre: this.state.row.Nombre,
                 Apellidos: this.state.row.Apellidos,
@@ -206,8 +212,29 @@ var Tinicial=
                 Sueldo: this.state.row.Sueldo,
                 Puesto: this.state.row.Puesto  
             }
-            this.state.T[mandar]=row
+            this.state.T[mandar]= row;
+            
             console.log(this.state.T)
+            this.refresh()
+        }
+
+        // PARA ELIMINAR
+
+        eliminar =()=>{
+            var T= this.state.T
+            var convertir=JSON.stringify(T)
+            var obj=JSON.parse(convertir)
+                for(var i=0; i<obj.length; i++){
+
+                    if(obj[i].ID == this.state.id2){
+                        obj.splice(i,1)
+
+                        break;
+
+                    }
+                }
+                this.setState({T:obj})
+                console.log("Sin elemento: ", T)
         }
         
         render() {
@@ -292,7 +319,7 @@ var Tinicial=
                                 <input className="form-control" value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text"/>
                                 <label htmlFor="ex3">Sueldo</label>
                                 <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text"/>
-                                <input className="form-control" value={this.state.row.ID} name="ID" id="ID" onChange={this.change} type="hidden"/>
+                                <input className="form-control" value={this.state.row.id2} name="ID" id="ID" onChange={this.change} type="hidden"/>
                             </div>
                     </div>
                     <div className='conteiner-fluid'>
@@ -301,8 +328,9 @@ var Tinicial=
                                 {/* <a href="#" className="btn btn-default" role="button">Crear</a> */}
                                 {/* <a href="#" className="btn btn-default" role="button">Actualizar</a> */}
                                 <button type="button"  className="btn btn-default" onClick={this.crear.bind()}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
-                                <button type="button"  className="btn btn-default" onClick={this.actualizar.bind()}>Cancelar</button>
-                                <a href="#" className="btn btn-default" role="button" >Eliminar</a>
+                                <button type="button"  className="btn btn-default" onClick={this.actualizar.bind()}>Actualizar</button>
+                                <button type="button"  className="btn btn-default" onClick={this.eliminar.bind()}>Eliminar</button>
+                                {/* <a href="#" className="btn btn-default" role="button" onClick={this.eliminar.bind()} >Eliminar</a> */}
 
                    </div>
                                 </center>
