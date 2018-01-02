@@ -8,18 +8,18 @@ var Tinicial=
         "Curp": "JIFB010925MASMGRA2",
         "Nombre": "BRENDA",
         "Apellidos": "JIMENEZ FIGUEROA",
-        "FechaNacimiento": "2001/09/25",
-        "FechaAdmision": "2017/08/21" ,
+        "FechaNacimiento": "2001-09-25",
+        "FechaAdmision": "2017-08-21" ,
         "Sueldo": "5000",
         "Puesto": "ATENCION AL PUBLICO" 
     },
     {
         "ID": 2,
         "Curp": "CARG010921HDGHMRA5",
-        "Nombre": "GERARDP",
+        "Nombre": "GERARDO",
         "Apellidos": "CHAVEZ ROMAN",
-        "FechaNacimiento": "2001/09/21",
-        "FechaAdmision": "2016/08/18",
+        "FechaNacimiento": "2001-09-21",
+        "FechaAdmision": "2016-08-18",
         "Sueldo": "4500",
         "Puesto": "REPARADOR" 
     },
@@ -28,8 +28,8 @@ var Tinicial=
         "Curp": "CUGA010714HDGRRNA1",
         "Nombre": "ANGEL",
         "Apellidos": "CRUZ GARCIA",
-        "FechaNacimiento": "2001/07/14",
-        "FechaAdmision": "2013/10/21",
+        "FechaNacimiento": "2001-07-14",
+        "FechaAdmision": "2013-10-21",
         "Sueldo": "5000",
         "Puesto": "GERENTE/DUEÑO" 
 
@@ -39,8 +39,8 @@ var Tinicial=
         "Curp": "GOZE001107MDWEROA1",
         "Nombre": "ELIZABETH",
         "Apellidos": "GONZALEZ SAUCEDO",
-        "FechaNacimiento": "2000/11/25",
-        "FechaAdmision": "2015/05/16",
+        "FechaNacimiento": "2000-11-25",
+        "FechaAdmision": "2015-05-16",
         "Sueldo": "2000",
         "Puesto": "VENDEDOR" 
 
@@ -50,32 +50,56 @@ var Tinicial=
         "Curp": "UYRT120908MIQIERA1",
         "Nombre": "MIGUEL ANGEL",
         "Apellidos": "SANCHEZ MORAN",
-        "FechaNacimiento": "2001/04/18",
-        "FechaAdmision": "2014/12/24",
+        "FechaNacimiento": "2001-04-18",
+        "FechaAdmision": "2014-12-24",
         "Sueldo": "7000",
         "Puesto": "CONDUCTOR" 
     
     }
 ]
     class trabajadores extends Component {
-        state = { 
-            T: Tinicial,
-            row: {
-                    ID: 0,
-                    Curp: "",
-                    Nombre: "",
-                    Apellidos: "",
-                    FechaNacimiento: "",
-                    FechaAdmision: "",
-                    Sueldo: "",
-                    Puesto: "" 
-                },
-            toogleform : true,
-            id: 5,
-            id2: null,
-            mandar: null
-         }
+        constructor (props){
+            super(props);
+            // this.funeliminar() = this.funeliminar().bind(this);
+            this.state = { 
+                T: Tinicial,
+                tipo:"text",
+                tipo2: "text",
+                row: {
+                        ID: 0,
+                        Curp: "",
+                        Nombre: "",
+                        Apellidos: "",
+                        FechaNacimiento: "",
+                        FechaAdmision: "",
+                        Sueldo: "",
+                        Puesto: "" 
+                    },
+                toogleform : true,
+                id: 5,
+                id2: null,
+                mandar: null
+             }
+        }
+         componentDidMount(){
+            document.getElementById("eliminar").style.display = "none"
+            // document.getElementById("FechaNacimiento").value = ""
+            
 
+         }
+        onBlur=()=>{
+            this.setState({tipo: 'text'})
+        }
+        onBlur2=()=>{
+            this.setState({tipo2: 'text'})
+        }
+        
+        onfocus=()=>{
+            this.setState({tipo:'date'})
+        }
+        onfocus2=()=>{
+            this.setState({tipo2:'date'})
+        }
          refresh =()=>{
             this.setState({
                 T:Tinicial
@@ -117,7 +141,11 @@ var Tinicial=
             }
             if(document.getElementById('checkbox'+idcheck).checked){
                 this.Traer(mandar);
+                document.getElementById("eliminar").style.display = "inline"
 
+            }else {
+                this.restaurarForm()
+                // this.Unchecked()
             }
 
          }
@@ -126,8 +154,31 @@ var Tinicial=
         //     this.setState({ T: Tinicial })
         // } 
 
+        //  PARA ACTUALIZAR/CREAR
+        ternaria= ()=>{
+            if(this.state.toogleform){
+                this.crear() 
+                
+
+            }this.actualizar()
+        }
+        // ACTIVAR BOTÓN ELIMINAR
+
+        // funeliminar=()=>{
+        //     if(this.state.toogleform){
+        //         document.getElementById("eliminar").style.display = "none"
+
+        //     }
+        //     document.getElementById("eliminar").style.display= "inline"
+        // }
+        
+        // PARA DESACTIVAR CHECKBOX
+        // Unchecked = ()=>{
+        //     this.restaurarForm()
+        // }
         //  PARA CREAR
         crear= ()=>{
+            console.log("iniciado")
             var ids=this.state.id+1;
             this.setState({
                 id2: ids
@@ -170,7 +221,7 @@ var Tinicial=
 
         // PARA TRAER
         Traer =(mandar)=>{
-            this.setState({mandar})
+            this.setState({mandar,toogleform: false})
             var T=this.state.T;
             var convertir=JSON.stringify(T);
             var obj=JSON.parse(convertir);
@@ -183,6 +234,9 @@ var Tinicial=
             var Sueldoacttra=obj[mandar].Sueldo
             var Puestoacttra=obj[mandar].Puesto
 
+            this.setState({
+                id2:idacttra
+            })
             var row = {
                 ID: idacttra,
                 Curp: Curpacttra,
@@ -216,6 +270,7 @@ var Tinicial=
             
             console.log(this.state.T)
             this.refresh()
+            this.restaurarForm()
         }
 
         // PARA ELIMINAR
@@ -234,7 +289,15 @@ var Tinicial=
                     }
                 }
                 this.setState({T:obj})
-                console.log("Sin elemento: ", T)
+                console.log("Sin elemento: ", this.state.id2)
+                this.restaurarForm()
+                var extension=T.length
+                document.getElementById("eliminar").style.display="none"
+
+                for(var r=1;r<=extension;r++){
+                    document.getElementById("checkbox"+r).checked=false
+                }
+
         }
         
         render() {
@@ -306,31 +369,31 @@ var Tinicial=
                                 <label htmlFor="ex1">Puesto</label>
                                 <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text"/>
                             </div>
-                            <div className="col-xs-3">
-                                <label htmlFor="ex2">Fecha de Nacimiento</label>
-                                <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento" onChange={this.change} type="text"/>
-
-                                <label htmlFor="ex2">Fecha de Admisión</label>
-                                <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision" onChange={this.change} type="text"/>
-                               
-                            </div>
+                     
                             <div className="col-xs-2">
                                 <label htmlFor="ex3">Curp</label>
-                                <input className="form-control" value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text"/>
+                                <input className="form-control"  value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text"/>
                                 <label htmlFor="ex3">Sueldo</label>
                                 <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text"/>
                                 <input className="form-control" value={this.state.row.id2} name="ID" id="ID" onChange={this.change} type="hidden"/>
+                            </div>
+                            <div className="col-xs-3">
+                                <label htmlFor="ex2">Fecha de Nacimiento</label>
+                                <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento"  onChange={this.change} type={ this.state.tipo } onFocus={this.onfocus} onBlur={this.onBlur}/>
+
+                                <label htmlFor="ex2">Fecha de Admisión</label>
+                                <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2}/>
+                               
                             </div>
                     </div>
                     <div className='conteiner-fluid'>
                    
 
-                                {/* <a href="#" className="btn btn-default" role="button">Crear</a> */}
-                                {/* <a href="#" className="btn btn-default" role="button">Actualizar</a> */}
-                                <button type="button"  className="btn btn-default" onClick={this.crear.bind()}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
-                                <button type="button"  className="btn btn-default" onClick={this.actualizar.bind()}>Actualizar</button>
-                                <button type="button"  className="btn btn-default" onClick={this.eliminar.bind()}>Eliminar</button>
-                                {/* <a href="#" className="btn btn-default" role="button" onClick={this.eliminar.bind()} >Eliminar</a> */}
+                               
+                                <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
+                                <button type="button" id="eliminar" className="btn btn-default" onClick={this.eliminar.bind()}>Eliminar</button>
+                                {/* <button type="button"  className="btn btn-default" onClick={this.eliminar.bind()}>Cancelar</button> */}
+                                 
 
                    </div>
                                 </center>
