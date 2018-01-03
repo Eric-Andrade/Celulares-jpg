@@ -363,26 +363,42 @@ var Tinicial=
                    
                             <div className="col-xs-4">
                                 <label htmlFor="ex1">Nombre</label>
-                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text"/>
+                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text" required pattern="[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ"/>
+
+
                                 <label htmlFor="ex1">Apellidos</label>
                                 <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text"/>
+
+
                                 <label htmlFor="ex1">Puesto</label>
                                 <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text"/>
+
+
                             </div>
                      
                             <div className="col-xs-2">
                                 <label htmlFor="ex3">Curp</label>
                                 <input className="form-control"  value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text"/>
+
+
                                 <label htmlFor="ex3">Sueldo</label>
-                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text"/>
+                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" />
+
+
                                 <input className="form-control" value={this.state.row.id2} name="ID" id="ID" onChange={this.change} type="hidden"/>
+
+
                             </div>
                             <div className="col-xs-3">
                                 <label htmlFor="ex2">Fecha de Nacimiento</label>
                                 <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento"  onChange={this.change} type={ this.state.tipo } onFocus={this.onfocus} onBlur={this.onBlur}/>
 
+                                
+
                                 <label htmlFor="ex2">Fecha de Admisión</label>
                                 <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2}/>
+
+                                
                                
                             </div>
                     </div>

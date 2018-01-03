@@ -76,3 +76,47 @@ xs=extra small=telefonos chicos
 sm=small=telefonos smart
 md=medium=computadoras standard
 lg=large=mayor  4000px
+
+---> ATRIBUTOS  BASICOS DE VALIDACIÓN <---
+
+--------------------------------------------------------------------------------------------------------------------------------
+Atributo	       Valor	         Puede actuar sobre...	        Descripción
+--------------------------------------------------------------------------------------------------------------------------------
+minlength        número	          Campos de texto	          Establece la longitud mínima del texto requerida.
+maxlength	       número	          Campos de texto	          No permite escribir textos superiores a número carácteres.
+min	             número	          Campos numéricos	        Establece el número mínimo permitido.
+                 fecha	          Campos de fecha	          Establece la fecha mínima permitida.
+                 hora	            Campos de hora	          Establece la hora mínima permitida.
+max	             número	          Campos numéricos	        Establece el número máximo permitido.
+                 fecha	          Campos de fecha	          Establece la fecha máxima permitida.
+                 hora	            Campos de hora	          Establece la hora máxima permitida.
+step	           número	          Campos numéricos	        Establece el salto de números permitido. Por defecto, 1.
+                 fecha	          Campos de fecha	          Establece el salto de días permitido. Por defecto, 1.
+                 hora	            Campos de hora	          Establece el salto de segundos permitido. Por defecto, 1.
+required		                      Campos en general	        Campo obligatorio. Se debe rellenar para enviar formulario.
+disabled		                      Campos en general	        Campo desactivado. No se puede modificar. No se envía.
+readonly		                      Campos en general	        Campo de sólo lectura. No se puede modificar. Se envía.
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---> EXPRESIONES REGULARES <---
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+Expresión regular	      Carácter especial	      Denominación	                  Descripción
+--------------------------------------------------------------------------------------------------------------------------------
+.	                      Punto	                  Comodín	                      Cualquier carácter (o texto de tamaño 1)
+A|B	                    Pipe	                  Opciones lógicas	            Opciones alternativas (o A o B)
+C(A|B)	                Paréntesis	            Agrupaciones	                Agrupaciones alternativas (o CA o CB)
+[0-9]	                  Corchetes	              Rangos de carácteres	        Un dígito (del 0 al 9)
+[A-Z]			                                      Una letra mayúscula           de la A a la Z
+[^A-Z]	                ^ en corchetes	        Rango de exclusión	          Una letra que no sea mayúscula de la A a la Z
+[0-9]*	                Asterisco	              Cierre o clausura             Un dígito repetido 0 ó más veces (vacío incluido)
+[0-9]+	                Signo más	              Cierre positivo	              Un dígito repetido 1 ó más veces
+[0-9]{3}	              Llaves	                Coincidencia exacta	          Cifra de 3 dígitos (dígito repetido 3 veces)
+[0-9]{2,4}		                                  Coincidencia (rango)	        Cifra de 2 a 4 dígitos (rep. de 2 a 4 veces)
+b?	                    Interrogación	          Carácter opcional	            El carácter b puede aparecer o puede que no
+\.	                    Barra invertida	        Escape	                      El carácter . literalmente (no como comodín)
+--------------------------------------------------------------------------------------------------------------------------------

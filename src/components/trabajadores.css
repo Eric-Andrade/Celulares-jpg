@@ -54,3 +54,16 @@
     -webkit-appearance: none; 
     margin: 0; 
   }
+
+input:valid{
+border-color: rgb(0, 138, 252);
+box-shadow: 0px 0px 10px #25c6db;
+
+
+}
+input:focus:invalid{
+  border-color: rgb(255, 0, 0);
+  box-shadow: 0px 0px 10px #ec2222;
+
+  
+  }
