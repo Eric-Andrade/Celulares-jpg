@@ -65,6 +65,7 @@ var Tinicial=
                 T: Tinicial,
                 tipo:"text",
                 tipo2: "text",
+                desactivar: true,
                 row: {
                         ID: 0,
                         Curp: "",
@@ -109,9 +110,59 @@ var Tinicial=
             var row = this.state.row;
             row[event.target.name] = event.target.value.toUpperCase();
             this.setState({
-                row, 
+                row
             })
-         }
+
+            var rowVacio={
+                ID: null,
+                Curp: "",
+                Nombre: "",
+                Apellidos: "",
+                FechaNacimiento: "",
+                FechaAdmision: "",
+                Sueldo: "",
+                Puesto: "" 
+            }
+                // VALIDACIÓN DEL BACK
+                  var Curp=row.Curp.trim();
+                  var Nombre=row.Nombre.trim();
+                  var Apellidos=row.Apellidos.trim();
+                  var Puesto=row.Puesto.trim();
+                  var Sueldo=row.Sueldo.trim();
+                  var FechaAdmision=row.FechaAdmision.trim();
+                  var FechaNacimiento=row.FechaNacimiento.trim();     
+       
+
+         if(Nombre.match("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,32}")){
+            console.log("1")
+            if(Apellidos.match("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,64}")){
+                console.log("2")
+                if(Puesto.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                    console.log("3")
+                    if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
+                        console.log("4")
+                        if(Sueldo.match("[0-9]^0{10000000000000}")){
+                            console.log("5")
+                            if(FechaNacimiento!=rowVacio.FechaNacimiento){
+                                console.log("6")
+                                if(FechaAdmision!=rowVacio.FechaAdmision){
+                                    this.setState({desactivar: false})   
+                                    // console.log("")
+                                }else{this.setState({desactivar: true})
+                            }
+                            }else{this.setState({desactivar: true})
+                        }
+                        }else{this.setState({desactivar: true})
+                    }
+                    }else{this.setState({desactivar: true})
+                }
+                }else{this.setState({desactivar: true})
+            }
+            }else{this.setState({desactivar: true})
+        }
+        }else{this.setState({desactivar: true})
+    }
+  }
 
          check=(idcheck)=> {
             
@@ -350,10 +401,7 @@ var Tinicial=
                             </tbody>
                         </table > 
                         <br/><br/><hr/>
-
-                       
-                       
-                         
+                      
                           <h3 className="text-left">Gestionar Trabajadores</h3>
         
                             
@@ -363,50 +411,42 @@ var Tinicial=
                    
                             <div className="col-xs-4">
                                 <label htmlFor="ex1">Nombre</label>
-                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text" required pattern="[ A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ"/>
+                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,32}" required/>
 
-
-                                <label htmlFor="ex1">Apellidos</label>
-                                <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text"/>
-
-
+                        
                                 <label htmlFor="ex1">Puesto</label>
-                                <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text"/>
+                                <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text" required />
+
+                                <label htmlFor="ex2">Fecha de Nacimiento</label>
+                                <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento"  onChange={this.change} type={ this.state.tipo } onFocus={this.onfocus} onBlur={this.onBlur} required/>
 
 
                             </div>
                      
-                            <div className="col-xs-2">
-                                <label htmlFor="ex3">Curp</label>
-                                <input className="form-control"  value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text"/>
+                            <div className="col-xs-4">
+                                <label htmlFor="ex1">Apellidos</label>
+                                <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,64}" required/>
 
-
+                                
                                 <label htmlFor="ex3">Sueldo</label>
-                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" />
+                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="[0-9]{4,5}" />
 
+                                <label htmlFor="ex2">Fecha de Admisión</label>
+                                <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2} required/>
 
                                 <input className="form-control" value={this.state.row.id2} name="ID" id="ID" onChange={this.change} type="hidden"/>
 
-
                             </div>
                             <div className="col-xs-3">
-                                <label htmlFor="ex2">Fecha de Nacimiento</label>
-                                <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento"  onChange={this.change} type={ this.state.tipo } onFocus={this.onfocus} onBlur={this.onBlur}/>
-
-                                
-
-                                <label htmlFor="ex2">Fecha de Admisión</label>
-                                <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2}/>
-
-                                
-                               
+                            <label htmlFor="ex3">Curp</label>
+                                <input className="form-control"  value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text" required pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$"/> 
                             </div>
                     </div>
                     <div className='conteiner-fluid'>
                    
 
                                
-                                <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
+                                <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
                                 <button type="button" id="eliminar" className="btn btn-default" onClick={this.eliminar.bind()}>Eliminar</button>
                                 {/* <button type="button"  className="btn btn-default" onClick={this.eliminar.bind()}>Cancelar</button> */}
                                  
@@ -416,6 +456,9 @@ var Tinicial=
                              
 
                           </div>
+                          
+
+                           
                        </div>
                        
                 
