@@ -36,7 +36,7 @@ var Tinicial=
     },
     {
         "ID": 4,
-        "Curp": "GOZE001107MDWEROA1",
+        "Curp": "GOZE000512MDGRRNA1",
         "Nombre": "ELIZABETH",
         "Apellidos": "GONZALEZ SAUCEDO",
         "FechaNacimiento": "2000-11-25",
@@ -47,7 +47,7 @@ var Tinicial=
     },
     {
         "ID": 5,
-        "Curp": "UYRT120908MIQIERA1",
+        "Curp": "SAMM010418HASNRGA2",
         "Nombre": "MIGUEL ANGEL",
         "Apellidos": "SANCHEZ MORAN",
         "FechaNacimiento": "2001-04-18",
@@ -141,7 +141,7 @@ var Tinicial=
                     console.log("3")
                     if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
                         console.log("4")
-                        if(Sueldo.match("[0-9]^0{10000000000000}")){
+                        if(Sueldo.match("^[1-9]+[0-9]+([.][0-9]+)?$")){
                             console.log("5")
                             if(FechaNacimiento!=rowVacio.FechaNacimiento){
                                 console.log("6")
@@ -253,6 +253,30 @@ var Tinicial=
                     })
                     this.restaurarForm()
         }
+
+        // PARA CURP REPETIDA
+        // repetido=()=>{
+        //     if(Curp===row.Curp){
+        //         // "Lo sentimos, éste trabajador ya existe"
+        //     }
+        // }
+
+        // ERRORES
+        // bcheckresetact=()=>{
+        //     let rowvar = {
+        //         ID: null,
+        //         Curp: "",
+        //         Nombre: "",
+        //         Apellidos: "",
+        //         FechaNacimiento: "",
+        //         FechaAdmision: "",
+        //         Sueldo: "",
+        //         Puesto: "" 
+        //     }
+        //     this.setState({
+        //        row: rowvar, toogleform: true
+        //     })
+        // }
         //  RESTAURAR FORMULARIO
         restaurarForm = () =>{
             let rowvar = {
@@ -354,10 +378,27 @@ var Tinicial=
         render() {
             return (
                 <div>
-                    {/* TABLA */}
+                    <div>
+                    <div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div className="container">
+                        <div className="row">
+                        <div className="col-sm-6 col-sm-offset-3 text-center">
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">×</button>
+                        <br/><br/>
+                        <h1>Modal with blur effect</h1>
+                        <h2>Put here whatever you want here</h2>
+                        <h4>For instance, a login form or an article content</h4>
+                        <h4><kbd>esc</kbd> or click anyway to close</h4>
+                        <hr/>
+                        <div className="alert alert-danger"><h4>You can add any html and css ;)</h4></div>
+                    </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                     {/* TABLA */}
                     <div className="container">
                         <h2 className='text-center'>Trabajadores</h2>
-                        <input className="form-control" id="myInput" type="text" placeholder="Buscar.."/>
                         <br/>
 
 
@@ -429,7 +470,7 @@ var Tinicial=
 
                                 
                                 <label htmlFor="ex3">Sueldo</label>
-                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="[0-9]{4,5}" />
+                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="^[1-9]+[0-9]+([.][0-9]+)?$"  />
 
                                 <label htmlFor="ex2">Fecha de Admisión</label>
                                 <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2} required/>
@@ -458,8 +499,8 @@ var Tinicial=
                           </div>
                           
 
-                           
                        </div>
+                           
                        
                 
             );
