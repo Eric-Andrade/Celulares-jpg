@@ -124,7 +124,9 @@ var Tinicial=
                 Puesto: "" 
             }
                 // VALIDACIÓN DEL BACK
-                  var Curp=row.Curp.trim();
+                  
+        
+            var Curp=row.Curp.trim();
                   var Nombre=row.Nombre.trim();
                   var Apellidos=row.Apellidos.trim();
                   var Puesto=row.Puesto.trim();
@@ -132,14 +134,14 @@ var Tinicial=
                   var FechaAdmision=row.FechaAdmision.trim();
                   var FechaNacimiento=row.FechaNacimiento.trim();     
        
-
-         if(Nombre.match("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,32}")){
-            console.log("1")
+                  if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
+         if(Nombre.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+            console.log("asdf")
             if(Apellidos.match("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,64}")){
                 console.log("2")
                 if(Puesto.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
                     console.log("3")
-                    if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
+                  
                         console.log("4")
                         if(Sueldo.match("^[1-9]+[0-9]+([.][0-9]+)?$")){
                             console.log("5")
@@ -163,6 +165,7 @@ var Tinicial=
         }else{this.setState({desactivar: true})
     }
   }
+        
 
          check=(idcheck)=> {
             
@@ -170,6 +173,7 @@ var Tinicial=
             var ext= T.length;
             var mandar=idcheck-1;
             // console.log(idcheck)
+            
  
             if (ext!=idcheck){
                 for(var x=1;x!=idcheck;x++){
@@ -207,11 +211,16 @@ var Tinicial=
 
         //  PARA ACTUALIZAR/CREAR
         ternaria= ()=>{
+    
             if(this.state.toogleform){
                 this.crear() 
                 
 
-            }this.actualizar()
+            }
+            this.actualizar()
+            
+            
+
         }
         // ACTIVAR BOTÓN ELIMINAR
 
@@ -227,8 +236,10 @@ var Tinicial=
         // Unchecked = ()=>{
         //     this.restaurarForm()
         // }
+
         //  PARA CREAR
         crear= ()=>{
+           
             console.log("iniciado")
             var ids=this.state.id+1;
             this.setState({
@@ -261,22 +272,6 @@ var Tinicial=
         //     }
         // }
 
-        // ERRORES
-        // bcheckresetact=()=>{
-        //     let rowvar = {
-        //         ID: null,
-        //         Curp: "",
-        //         Nombre: "",
-        //         Apellidos: "",
-        //         FechaNacimiento: "",
-        //         FechaAdmision: "",
-        //         Sueldo: "",
-        //         Puesto: "" 
-        //     }
-        //     this.setState({
-        //        row: rowvar, toogleform: true
-        //     })
-        // }
         //  RESTAURAR FORMULARIO
         restaurarForm = () =>{
             let rowvar = {
@@ -326,9 +321,12 @@ var Tinicial=
                 row
             })
         }
+
+        
         // ACTUALIZAR
 
         actualizar=()=>{
+            
             console.log("cambio")
             var mandar = this.state.mandar;
             var row = {
@@ -343,9 +341,20 @@ var Tinicial=
             }
             this.state.T[mandar]= row;
             
+
+            
             console.log(this.state.T)
             this.refresh()
             this.restaurarForm()
+            var T=this.state.T
+            var extension=T.length
+                for(var r=1;r<=extension;r++){
+
+                    document.getElementById("checkbox"+r).checked=false
+                }
+
+                document.getElementById("eliminar").style.display="none"
+
         }
 
         // PARA ELIMINAR
@@ -487,7 +496,7 @@ var Tinicial=
                    
 
                                
-                                <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
+                                <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()}disabled={this.state.desactivar}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
                                 <button type="button" id="eliminar" className="btn btn-default" onClick={this.eliminar.bind()}>Eliminar</button>
                                 {/* <button type="button"  className="btn btn-default" onClick={this.eliminar.bind()}>Cancelar</button> */}
                                  
