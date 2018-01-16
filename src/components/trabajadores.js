@@ -31,7 +31,7 @@ var Tinicial=
         "FechaNacimiento": "2001-07-14",
         "FechaAdmision": "2013-10-21",
         "Sueldo": "5000",
-        "Puesto": "GERENTE/DUEÑO" 
+        "Puesto": "DUEÑO" 
 
     },
     {
@@ -66,6 +66,7 @@ var Tinicial=
                 tipo:"text",
                 tipo2: "text",
                 desactivar: true,
+                activar : true,
                 row: {
                         ID: 0,
                         Curp: "",
@@ -126,7 +127,7 @@ var Tinicial=
                 // VALIDACIÓN DEL BACK
                   
         
-            var Curp=row.Curp.trim();
+                  var Curp=row.Curp.trim();
                   var Nombre=row.Nombre.trim();
                   var Apellidos=row.Apellidos.trim();
                   var Puesto=row.Puesto.trim();
@@ -134,39 +135,77 @@ var Tinicial=
                   var FechaAdmision=row.FechaAdmision.trim();
                   var FechaNacimiento=row.FechaNacimiento.trim();     
        
-                  if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
-         if(Nombre.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-            console.log("asdf")
-            if(Apellidos.match("[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,64}")){
-                console.log("2")
-                if(Puesto.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-                    console.log("3")
-                  
-                        console.log("4")
-                        if(Sueldo.match("^[1-9]+[0-9]+([.][0-9]+)?$")){
-                            console.log("5")
-                            if(FechaNacimiento!=rowVacio.FechaNacimiento){
-                                console.log("6")
-                                if(FechaAdmision!=rowVacio.FechaAdmision){
-                                    this.setState({desactivar: false})   
-                                    // console.log("")
-                                }else{this.setState({desactivar: true})
-                            }
-                            }else{this.setState({desactivar: true})
-                        }
-                        }else{this.setState({desactivar: true})
-                    }
-                    }else{this.setState({desactivar: true})
-                }
-                }else{this.setState({desactivar: true})
-            }
-            }else{this.setState({desactivar: true})
-        }
-        }else{this.setState({desactivar: true})
-    }
-  }
-        
+    if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 0-9]*$/g.test(Curp)){
+        this.setState({desactivar: false})
+        console.log("curp correcta")
+        if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Nombre)){
+            this.setState({desactivar:false})
+            console.log("nombre correcto")
+            if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Apellidos)){
+                this.setState({desactivar: false})
+                console.log("Correcto")
+                if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Puesto)){
+                    this.setState({desactivar:false})
+                    console.log("puesto correcto")
+                    if(/^[1-9]+[0-9]*([.][0-9])?$/.test(Sueldo)){
+                        this.setState({desactivar:false})
+                        console.log("sueldo correcto")
+                        if(FechaNacimiento!=rowVacio.FechaNacimiento){
+                            this.setState({desactivar:false})
+                            console.log("fecha nacimiento correcta")
+                            if(FechaAdmision!=rowVacio.FechaAdmision){
+                                this.setState({desactivar:false})
+                                console.log("fecha admision correcta")
 
+    }else{this.setState({desactivar: true})
+        console.log("curp incorrecta")
+    }
+
+    
+        }else{this.setState({desactivar:true})
+        console.log("nombre incorrecto")}
+
+    
+            }else{this.setState({desactivar:true})
+            console.log("Incorrecto")}
+
+   
+                }else{this.setState({desactivar:true})
+                console.log("puesto incorrecto")}
+
+    
+                    }else{this.setState({desactivar:true})
+                    console.log("sueldo incorrecto")}
+
+    
+                        }else{this.setState({desactivar:true})}
+
+   
+                            }else{this.setState({desactivar:true})
+                            console.log("fecha admision incorrecta")}
+
+
+
+                            if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
+                                if(Nombre.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                                    if(Apellidos.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                                        if(FechaNacimiento!=rowVacio.FechaNacimiento){
+                                            if(FechaAdmision!=rowVacio.FechaAdmision){
+                                                if(Sueldo.match("[0-9]+[^.]{1,15}")){
+                                                    if(Puesto.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                                                            this.setState({Desactivado:false})
+                                                    }else{this.setState({Desactivado:true})}
+                                                }else{this.setState({Desactivado:true})}
+                                            }else{this.setState({Desactivado:true})}
+                                        }else{this.setState({Desactivado:true})}
+                                    }else{this.setState({Desactivado:true})}             
+                                }else{this.setState({Desactivado:true})}
+                            }else{this.setState({Desactivado:true})
+                        }
+
+
+  }
+    
          check=(idcheck)=> {
             
             var T=this.state.T;
@@ -406,12 +445,18 @@ var Tinicial=
                         </div>
                         </div>
                      {/* TABLA */}
+
                     <div className="container">
                         <h2 className='text-center'>Trabajadores</h2>
                         <br/>
+<div className="table-container ">
+{/* scrollbar inconcluso> */}
 
 
-                        <table className="table table-bordered table-striped">
+
+
+
+                        <table className="table-container table table-bordered table-striped" >
                             <thead>
                                 <tr>
                                 <th></th>
@@ -450,6 +495,8 @@ var Tinicial=
                           },this)}                               
                             </tbody>
                         </table > 
+
+        </div>
                         <br/><br/><hr/>
                       
                           <h3 className="text-left">Gestionar Trabajadores</h3>
@@ -461,11 +508,10 @@ var Tinicial=
                    
                             <div className="col-xs-4">
                                 <label htmlFor="ex1">Nombre</label>
-                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,32}" required/>
+                                <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" required/>
 
-                        
                                 <label htmlFor="ex1">Puesto</label>
-                                <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text" required />
+                                <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}"/>
 
                                 <label htmlFor="ex2">Fecha de Nacimiento</label>
                                 <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento"  onChange={this.change} type={ this.state.tipo } onFocus={this.onfocus} onBlur={this.onBlur} required/>
@@ -475,11 +521,11 @@ var Tinicial=
                      
                             <div className="col-xs-4">
                                 <label htmlFor="ex1">Apellidos</label>
-                                <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,64}" required/>
+                                <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text" pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" required/>
 
                                 
                                 <label htmlFor="ex3">Sueldo</label>
-                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="^[1-9]+[0-9]+([.][0-9]+)?$"  />
+                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="[0-9]+[^.]{1,15}"  />
 
                                 <label htmlFor="ex2">Fecha de Admisión</label>
                                 <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2} required/>
@@ -506,12 +552,10 @@ var Tinicial=
                              
 
                           </div>
-                          
-
                        </div>
                            
                        
-                
+                           
             );
         } 
     }

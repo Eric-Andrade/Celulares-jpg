@@ -67,3 +67,9 @@ input:focus:invalid{
 
   
   }
+
+
+.table-container{
+max-height: 400px;
+overflow-y: scroll;
+  }
