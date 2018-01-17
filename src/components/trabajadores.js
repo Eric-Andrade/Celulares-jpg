@@ -426,24 +426,7 @@ var Tinicial=
         render() {
             return (
                 <div>
-                    <div>
-                    <div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div className="container">
-                        <div className="row">
-                        <div className="col-sm-6 col-sm-offset-3 text-center">
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">×</button>
-                        <br/><br/>
-                        <h1>Modal with blur effect</h1>
-                        <h2>Put here whatever you want here</h2>
-                        <h4>For instance, a login form or an article content</h4>
-                        <h4><kbd>esc</kbd> or click anyway to close</h4>
-                        <hr/>
-                        <div className="alert alert-danger"><h4>You can add any html and css ;)</h4></div>
-                    </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
+                    
                      {/* TABLA */}
 
                     <div className="container">

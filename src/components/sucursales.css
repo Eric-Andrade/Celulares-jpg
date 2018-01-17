@@ -1,0 +1,7 @@
+.table-container{
+    max-height: 400px;
+    overflow-y: scroll;
+      }
+      .margen{
+        margin: 25px;
+      }

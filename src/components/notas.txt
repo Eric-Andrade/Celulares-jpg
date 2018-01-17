@@ -120,3 +120,7 @@ C(A|B)	                Paréntesis	            Agrupaciones	                Agru
 b?	                    Interrogación	          Carácter opcional	            El carácter b puede aparecer o puede que no
 \.	                    Barra invertida	        Escape	                      El carácter . literalmente (no como comodín)
 --------------------------------------------------------------------------------------------------------------------------------
+
+{this.state.S.map(function(s,i){
+  
+})}
