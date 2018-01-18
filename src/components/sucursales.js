@@ -43,9 +43,60 @@ class sucursales extends Component {
    constructor(props){
        super(props)
        this.state={
-        s:sinicial
+        s:sinicial,
+        row:{
+            ID:0,
+            Ciudad:"",
+            Pais:"",
+            Direccion:"",
+            Telefono:""
+        },
+        id:5,
+        id2:null
     }
    }
+
+   refresh=()=>{
+       this.setState({s:sinicial})
+   }
+   
+   restaurarform=()=>{
+       
+    let  rowvar={
+        ID:null,
+        Ciudad:"",
+        Pais:"",
+        Direccion:"",
+        Telefono:""
+    }
+    this.setState({
+        row:rowvar
+    })
+   }
+   crear=()=>{
+    var ids=this.state.id+1
+    this.setState({
+        id2:ids
+    })
+    var row={
+        ID:ids,
+        Ciudad: this.state.row.Ciudad,
+        Pais: this.state.row.Pais,
+        Direccion: this.state.row.Direccion,
+        Telefono: this.state.row.Telefono
+
+    }
+    var create=this.state.s.concat([row])
+    sinicial=create
+    this.refresh()
+        this.setState({
+            cambiaragg:1, id:ids
+        })
+        this.restaurarform()
+
+
+}
+
     render() {
 
         return (
@@ -86,13 +137,52 @@ class sucursales extends Component {
 
                    
                 </table>
-                <hr/>
-                    <br/><br/><br/>
+            
+                    
+                </div>
+            </div>
+            <div className="margen container">
+            <br/><br/><br/>
+                    <hr/>
 
                     <h3 clasName="text-left">Gestionar Sucursales</h3>
-                </div>
+                    <br/><br/>
 
-     
+                    <div className="form-group row">
+                        <div className="col-xs-3">
+
+                            <label htmlFor="ex-1">Ciudad</label>
+                            <input className="form-control" name="Ciudad" id="Ciudad" type="text" value={this.state.row.Ciudad}/>
+
+                            <br/>
+                            
+                            <label htmlFor="ex-1">Telefono</label>
+                            <input className="form-control" name="Telefono" id="Telefono" type="text" value={this.state.row.Telefono}/>    
+                        </div>
+
+                        <div className="col-xs-3 ">
+
+                            <label htmlFor="ex-1">País</label>
+                            <input className="form-control" name="Pais" id="Pais" type="text" value={this.state.row.Pais}/>
+
+                        </div>
+
+                        <div className="col-xs-6">
+                            <label htmlFor="ex-1">Dirección</label>
+                            <input className="form-control" name="Direccion" id="Direccion" type="text" value={this.state.row.Direccion}/>
+
+                            <input className="form-control" type="hidden"/>
+                        </div>
+    
+                    </div>
+
+                   <center>
+                       <br/>
+                   <div clasName="conteiner-fluid">
+                        <button type="button"  className="btn btn-default" onClick={this.crear}>Crear</button>
+                        <button type="button"  className="btn btn-default">Eliminar</button>
+                   </div>
+                    </center>
             </div>
         </div>
         
