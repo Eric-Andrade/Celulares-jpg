@@ -52,8 +52,29 @@ class sucursales extends Component {
             Telefono:""
         },
         id:5,
-        id2:null
+        id2:null,
+        mandar:null
     }
+   }
+
+   Change =(event)=>{
+    var row=this.state.row
+    row[event.target.name] = event.target.value.toUpperCase();
+    this.setState({row})
+
+        var rowvacio={
+            ID:null,
+            Ciudad:" ",
+            Pais:" ",
+            Direccion:" ",
+            Telefono:" "
+        }
+
+   }
+   Check=(idcheck)=>{
+       var s=this.state.s
+       var ext=s.length
+       var mandar=idcheck-1
    }
 
    refresh=()=>{
@@ -74,6 +95,7 @@ class sucursales extends Component {
     })
    }
    crear=()=>{
+       console.log("iniciado")
     var ids=this.state.id+1
     this.setState({
         id2:ids
@@ -97,6 +119,29 @@ class sucursales extends Component {
 
 }
 
+leer =(mandar)=>{
+    this.state({mandar})
+    var s=this.state.s
+    var convertir=JSON.stringify(s);
+    var obj=JSON.parse(convertir)
+    var IDl=obj[mandar].ID
+    var Ciudadl=obj[mandar].Ciudad
+    var Paisl=obj[mandar].Pais
+    var Direccionl=obj[mandar].Direccion
+    var Telefonol=obj[mandar].Telefono
+
+    this.setState({ids2:IDl})
+
+    var row={
+        ID:IDl,
+        Ciudad:Ciudadl,
+        Pais:Paisl,
+        Direccion:Direccionl,
+        Telefono:Telefonol
+    }
+    this.setState({row})
+}
+
     render() {
 
         return (
@@ -110,6 +155,7 @@ class sucursales extends Component {
 
                     <thead>
                         <tr>
+                            <th></th>
                             <th>ID</th>
                             <th>Ciudad</th>
                             <th>País</th>
@@ -124,6 +170,10 @@ class sucursales extends Component {
                         var iE=i+1;
                         return(
                             <tr key={i}>
+                             <td><label className="custom-control custom-checkbox">
+                                    <input type="checkbox" className="custom-control-input desc" />
+                                    <span className="custom-control-indicator" ></span>
+                                </label></td>
                             <td>{s.ID}</td>
                             <td>{s.Ciudad}</td>
                             <td>{s.Pais}</td>
@@ -152,24 +202,24 @@ class sucursales extends Component {
                         <div className="col-xs-3">
 
                             <label htmlFor="ex-1">Ciudad</label>
-                            <input className="form-control" name="Ciudad" id="Ciudad" type="text" value={this.state.row.Ciudad}/>
+                            <input className="form-control" value={this.state.row.Ciudad} onChange={this.Change} name="Ciudad" id="Ciudad" type="text" />
 
                             <br/>
                             
                             <label htmlFor="ex-1">Telefono</label>
-                            <input className="form-control" name="Telefono" id="Telefono" type="text" value={this.state.row.Telefono}/>    
+                            <input className="form-control" value={this.state.row.Telefono} onChange={this.Change} name="Telefono" id="Telefono" type="text" />    
                         </div>
 
                         <div className="col-xs-3 ">
 
                             <label htmlFor="ex-1">País</label>
-                            <input className="form-control" name="Pais" id="Pais" type="text" value={this.state.row.Pais}/>
+                            <input className="form-control" value={this.state.row.Pais} onChange={this.Change} name="Pais" id="Pais" type="text" />
 
                         </div>
 
                         <div className="col-xs-6">
                             <label htmlFor="ex-1">Dirección</label>
-                            <input className="form-control" name="Direccion" id="Direccion" type="text" value={this.state.row.Direccion}/>
+                            <input className="form-control" value={this.state.row.Direccion} onChange={this.Change} name="Direccion" id="Direccion" type="text" />
 
                             <input className="form-control" type="hidden"/>
                         </div>
