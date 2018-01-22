@@ -56,8 +56,14 @@ class sucursales extends Component {
         mandar:null
     }
    }
+   componentDidMount(){
+    document.getElementById("eliminar").style.display = "none"
+
+   }
 
    Change =(event)=>{
+       var ids=this.state.ID+1
+       this.setState({id2:ids})
     var row=this.state.row
     row[event.target.name] = event.target.value.toUpperCase();
     this.setState({row})
@@ -75,6 +81,36 @@ class sucursales extends Component {
        var s=this.state.s
        var ext=s.length
        var mandar=idcheck-1
+
+       if (ext!=idcheck){
+        for(var x=1;x!=idcheck;x++){
+        document.getElementById('checkbox'+x).checked = false;
+        // console.log("Desactivado= ",x)
+        }
+    }
+    if(ext===idcheck){
+    var exte = ext-1; 
+    for(exte; exte!=0;exte--){
+        document.getElementById('checkbox'+exte).checked = false;
+        // console.log("Desactivado= ",exte)
+
+    }
+    }
+    for(ext; ext!=idcheck; ext--){
+        document.getElementById('checkbox'+ext).checked = false;
+        // console.log("Desactivado= ",ext)
+
+    }
+    if(document.getElementById('checkbox'+idcheck).checked){
+        this.leer(mandar);
+        document.getElementById("eliminar").style.display = "inline"
+
+    }else {
+        this.restaurarform()
+        // this.Unchecked()
+        // document.getElementById("eliminar").style.display = "none"
+        
+    }
    }
 
    refresh=()=>{
@@ -120,7 +156,7 @@ class sucursales extends Component {
 }
 
 leer =(mandar)=>{
-    this.state({mandar})
+    this.setState({mandar})
     var s=this.state.s
     var convertir=JSON.stringify(s);
     var obj=JSON.parse(convertir)
@@ -130,7 +166,7 @@ leer =(mandar)=>{
     var Direccionl=obj[mandar].Direccion
     var Telefonol=obj[mandar].Telefono
 
-    this.setState({ids2:IDl})
+    this.setState({id2:IDl})
 
     var row={
         ID:IDl,
@@ -142,6 +178,56 @@ leer =(mandar)=>{
     this.setState({row})
 }
 
+Actualizar=()=>{
+     var mandar=this.state.mandar
+     var row={
+         ID:this.state.row.ID,
+         Ciudad:this.state.row.Ciudad,
+         Pais:this.state.row.Pais,
+         Direccion:this.state.row.Direccion,
+         Telefono:this.state.row.Telefono
+     }
+     this.state.s[mandar]=row
+     
+     this.refresh()
+     this.restaurarform()
+     var s=this.state.s
+      var extension=s.length
+
+      for(var r=1;r<=extension;r++){
+          document.getElementById('checkbox'+r).checked=false
+      }
+      document.getElementById("").style.display="none"
+}
+
+eliminar=()=>{
+    var s=this.state.s
+    var convertir=JSON.stringify(s)
+    var obj=JSON.parse(convertir)
+
+    for(var i=0;i<s.length;i++){
+        console.log(obj[i].ID)
+        console.log(this.state.id2)
+        if(obj[i].ID==this.state.id2){
+            obj.splice(i,1)
+
+            
+            break;
+
+        }
+    }
+    this.setState({s:obj})
+    
+
+    this.restaurarform()
+
+    var extension=s.length
+    document.getElementById("eliminar").style.display="none"
+
+    for(var r=1;r<=extension;r++){
+        document.getElementById("checkbox"+r).checked=false
+    }
+}
     render() {
 
         return (
@@ -171,8 +257,8 @@ leer =(mandar)=>{
                         return(
                             <tr key={i}>
                              <td><label className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input desc" />
-                                    <span className="custom-control-indicator" ></span>
+                                    <input type="checkbox" className="custom-control-input desc" id={"checkbox"+iE} onClick={()=>this.Check(iE)} />
+                                    <span className="custom-control-indicator " id={"checkbox"+iE} onClick={()=>this.Check(iE)} ></span>
                                 </label></td>
                             <td>{s.ID}</td>
                             <td>{s.Ciudad}</td>
@@ -181,7 +267,7 @@ leer =(mandar)=>{
                             <td>{s.Telefono}</td>
                             </tr>
                         )
-                    })}
+                    },this)}
 
                     </tbody>
 
@@ -230,7 +316,7 @@ leer =(mandar)=>{
                        <br/>
                    <div clasName="conteiner-fluid">
                         <button type="button"  className="btn btn-default" onClick={this.crear}>Crear</button>
-                        <button type="button"  className="btn btn-default">Eliminar</button>
+                        <button type="button"  className="btn btn-default" id="eliminar" onClick={this.eliminar}>Eliminar</button>
                    </div>
                     </center>
             </div>

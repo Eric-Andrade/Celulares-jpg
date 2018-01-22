@@ -235,7 +235,7 @@ var Tinicial=
             }
             if(document.getElementById('checkbox'+idcheck).checked){
                 this.Traer(mandar);
-                document.getElementById("eliminar").style.display = "inline"
+                document.getElementById("").style.display = "inline"
 
             }else {
                 this.restaurarForm()
@@ -265,10 +265,10 @@ var Tinicial=
 
         // funeliminar=()=>{
         //     if(this.state.toogleform){
-        //         document.getElementById("eliminar").style.display = "none"
+        //         document.getElementById("").style.display = "none"
 
         //     }
-        //     document.getElementById("eliminar").style.display= "inline"
+        //     document.getElementById("").style.display= "inline"
         // }
         
         // PARA DESACTIVAR CHECKBOX
@@ -392,7 +392,7 @@ var Tinicial=
                     document.getElementById("checkbox"+r).checked=false
                 }
 
-                document.getElementById("eliminar").style.display="none"
+                document.getElementById("").style.display="none"
 
         }
 
