@@ -6,6 +6,7 @@ import Trabajadores from './components/trabajadores';
 // import Welcome from'./components/welcome';
 import './App.css';
 import Sucursales from './components/sucursales';
+import Camiones from './components/camiones';
 
 
 
@@ -13,7 +14,8 @@ class App extends Component {
   state = {  }
   render() {
     return (
-      <Sucursales/>
+      // <Sucursales/>
+      <Camiones/>
       // <Prueba/>
       
     );
