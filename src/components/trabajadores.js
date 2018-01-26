@@ -235,7 +235,7 @@ var Tinicial=
             }
             if(document.getElementById('checkbox'+idcheck).checked){
                 this.Traer(mandar);
-                document.getElementById("").style.display = "inline"
+                document.getElementById("eliminar").style.display = "inline"
 
             }else {
                 this.restaurarForm()
