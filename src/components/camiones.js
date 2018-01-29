@@ -42,7 +42,7 @@ class camiones extends Component {
             id2:null,
             mandar:null,
             toogle:true,
-            activar:true
+            desactivar:true
 
         }
     }
@@ -77,36 +77,36 @@ class camiones extends Component {
         var Modelo=row.Modelo.trim()
         var Año=row.Año.trim()
 
-        if(/^([A-Z]{2}-\d{2}-\d{3})*$/g.test(Placa)){
-            this.setState({activar:true})
+        if(/^([A-Z]{2}-[0-9]{2}-[0-9]{3})*$/g.test(Placa)){
+            this.setState({desactivar:false})
             console.log("Placa correcta")
                 if(/^(\d{1,4}KG)*$/g.test(Capacidad)){
-                    this.setState({activar:true})
+                    this.setState({desactivar:false})
                     console.log("Capacidad correcta")
                         if(/^([A-Z]{2}-\d{2}-\d{3}[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20})*$/g.test(Modelo)){
-                            this.setState({activar:true})
+                            this.setState({desactivar:false})
                             console.log("Modelo correcto")
                                 if(/^[0-9]*$/g.test(Año)){
-                                    this.setState({activar:true})
+                                    this.setState({desactivar:false})
                                     console.log("Año correcto")
-                                }else{this.setState({activar:false})}
-                        }else{this.setState({activar:false})
+                                }else{this.setState({desactivar:true})}
+                        }else{this.setState({desactivar:true})
                             console.log("Modelo incorrecto")}
-                }else{this.setState({activar:false})
+                }else{this.setState({desactivar:true})
                     console.log("Capacidad incorrecta")}
-        }else{this.setState({activar:false})
+        }else{this.setState({desactivar:true})
             console.log("Placa incorrecta")}
 
 
-            if(Placa.match("([A-Z]{2}-\d{2}-\d{3}){9,9}")){
+            if(Placa.match("([A-Z]{2}-[0-9]{2}-[0-9]{3}){9,9}")){
                 if(Capacidad.match("(\d{1,4}KG){1,4}")){
                     if(Modelo.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20}")){
                         if(Año.match("[0-9]{4,4}")){
-                                this.setState({activar:true})
-                        }else{this.setState({activar:false})}
-                    }else{this.setState({activar:false})}
-                }else{this.setState({activar:false})}
-            }else{this.setState({activar:false})}
+                                this.setState({desactivar:false})
+                        }else{this.setState({desactivar:true})}
+                    }else{this.setState({desactivar:true})}
+                }else{this.setState({desactivar:true})}
+            }else{this.setState({desactivar:true})}
 
 
  
@@ -305,25 +305,25 @@ class camiones extends Component {
                         <div className="form-group row">
                             <div className="col-xs-4">
                                 <label>Placa</label>
-                                <input className="form-control" type="text" value={this.state.row.Placa} name="Placa" id="Placa" onChange={this.Change} minlength="9" maxlength="9"required pattern="([A-Z]{2}-\d{2}-\d{3}){9,9}"/>
+                                <input className="form-control" type="text" value={this.state.row.Placa} name="Placa" id="Placa" onChange={this.Change} minLength="9" maxLength="9" required pattern="([A-Z]{2}-[0-9]{2}-[0-9]{3})"/>
 
                                 <label>Capacidad</label>
-                                <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minlength="1" maxlength="4" required pattern="(\d{1,4}KG){1,4}"/>
+                                <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minLength="1" maxLength="4" required pattern="(\d{1,4}KG){1,4}"/>
                             </div>
 
                             <div className="col-xs-4">
                                 <label>Modelo</label>
-                                <input className="form-control" type="text" value={this.state.row.Modelo} name="Modelo" id="Modelo" onChange={this.Change} minlength="3" maxlength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20}"/>
+                                <input className="form-control" type="text" value={this.state.row.Modelo} name="Modelo" id="Modelo" onChange={this.Change} minLength="3" maxLength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20}"/>
 
                                 <label>Año</label>
-                                <input className="form-control" type="text" value={this.state.row.Año} name="Año" id="Año" onChange={this.Change} minlength="4" maxlength="4" required pattern="[0-9]{4,4}"/>
+                                <input className="form-control" type="text" value={this.state.row.Año} name="Año" id="Año" onChange={this.Change} minLength="4" maxLength="4" required pattern="[0-9]{4,4}"/>
 
                                 <input type="hidden"></input>
                             </div>
 
                         </div>
 
-                        <button type="button" className="btn btn-default" onClick={this.ternaria.bind()} disabled={this.state.activar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
+                        <button type="button" className="btn btn-default"onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
                         <button type="button" className="btn btn-default" id="eliminar" onClick={this.eliminar}>Eliminar</button>
                     </center>
                 </div>

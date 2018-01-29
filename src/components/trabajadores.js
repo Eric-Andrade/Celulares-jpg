@@ -66,7 +66,6 @@ var Tinicial=
                 tipo:"text",
                 tipo2: "text",
                 desactivar: true,
-                activar : true,
                 row: {
                         ID: 0,
                         Curp: "",

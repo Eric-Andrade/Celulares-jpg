@@ -53,7 +53,9 @@ class sucursales extends Component {
         },
         id:5,
         id2:null,
-        mandar:null
+        mandar:null,
+        desactivar:true,
+        toogle:true
     }
    }
    componentDidMount(){
@@ -75,6 +77,42 @@ class sucursales extends Component {
             Direccion:" ",
             Telefono:" "
         }
+    // Validación del Back
+        var Ciudad=row.Ciudad.trim()
+        var Pais=row.Pais.trim()
+        var Direccion=row.Direccion.trim()
+        var Telefono=row.Telefono.trim()
+
+        // if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Ciudad)){
+        //     if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Pais)){
+        //             if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]*$/g.test(Direccion)){
+        //                 if(/^[0-9]*$/g.test(Telefono)){
+        //                     this.setState({desactivar:true})
+        //                 }else{this.setState({desactivar:false})
+        //                     console.log("Telefono incorrecto")}
+        //             }else{this.setState({desactivar:false})
+        //                 console.log("Direccion incorrecto")}
+        //     }else{this.setState({desactivar:false})
+        //         console.log("Pais incorrecto")}
+        // }else{this.setState({desactivar:false})
+        //     console.log("Ciudad incorrecto")}
+
+
+            if(Ciudad.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                console.log("Ciudad correcta")
+                    if(Pais.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                        console.log("Pais correcto")
+                        if(Direccion.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]")){
+                            console.log("Direccion correcta")
+                                if(Telefono.match("[0-9]{10,13}")){
+                                    this.setState({desactivar:false})
+                                    console.log("Telefono correcto")
+                                }else{this.setState({desactivar:true})}
+                        }else{this.setState({desactivar:true})}
+                    }else{this.setState({desactivar:true})}
+            }else{this.setState({desactivar:true})
+                console.log("Ciudad incorrecta")}
+
 
    }
    Check=(idcheck)=>{
@@ -108,7 +146,7 @@ class sucursales extends Component {
     }else {
         this.restaurarform()
         // this.Unchecked()
-        // document.getElementById("eliminar").style.display = "none"
+        document.getElementById("eliminar").style.display = "none"
         
     }
    }
@@ -127,8 +165,16 @@ class sucursales extends Component {
         Telefono:""
     }
     this.setState({
+    toogle:true,
         row:rowvar
     })
+    
+   }
+
+   ternaria=()=>{
+       if(this.state.toogle){
+           this.crear()
+       }this.Actualizar()
    }
    crear=()=>{
        console.log("iniciado")
@@ -156,7 +202,7 @@ class sucursales extends Component {
 }
 
 leer =(mandar)=>{
-    this.setState({mandar})
+    this.setState({mandar,toogle:false})
     var s=this.state.s
     var convertir=JSON.stringify(s);
     var obj=JSON.parse(convertir)
@@ -175,7 +221,7 @@ leer =(mandar)=>{
         Direccion:Direccionl,
         Telefono:Telefonol
     }
-    this.setState({row})
+    this.setState({row,toogle:false})
 }
 
 Actualizar=()=>{
@@ -197,7 +243,7 @@ Actualizar=()=>{
       for(var r=1;r<=extension;r++){
           document.getElementById('checkbox'+r).checked=false
       }
-      document.getElementById("").style.display="none"
+      document.getElementById("eliminar").style.display="none"
 }
 
 eliminar=()=>{
@@ -288,24 +334,24 @@ eliminar=()=>{
                         <div className="col-xs-3">
 
                             <label htmlFor="ex-1">Ciudad</label>
-                            <input className="form-control" value={this.state.row.Ciudad} onChange={this.Change} name="Ciudad" id="Ciudad" type="text" />
+                            <input className="form-control" value={this.state.row.Ciudad} onChange={this.Change} name="Ciudad" id="Ciudad" type="text" minlength="2" maxlength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
 
                             <br/>
                             
                             <label htmlFor="ex-1">Telefono</label>
-                            <input className="form-control" value={this.state.row.Telefono} onChange={this.Change} name="Telefono" id="Telefono" type="text" />    
+                            <input className="form-control" value={this.state.row.Telefono} onChange={this.Change} name="Telefono" id="Telefono" type="text" minlength="10" maxlength="13" required pattern="[0-9]{10,13}" />    
                         </div>
 
                         <div className="col-xs-3 ">
 
                             <label htmlFor="ex-1">País</label>
-                            <input className="form-control" value={this.state.row.Pais} onChange={this.Change} name="Pais" id="Pais" type="text" />
+                            <input className="form-control" value={this.state.row.Pais} onChange={this.Change} name="Pais" id="Pais" type="text" minlength="2" maxlength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
 
                         </div>
 
                         <div className="col-xs-6">
                             <label htmlFor="ex-1">Dirección</label>
-                            <input className="form-control" value={this.state.row.Direccion} onChange={this.Change} name="Direccion" id="Direccion" type="text" />
+                            <input className="form-control" value={this.state.row.Direccion} onChange={this.Change} name="Direccion" id="Direccion" type="text" minlength="2" maxlength="100" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]{2,100}" />
 
                             <input className="form-control" type="hidden"/>
                         </div>
@@ -315,7 +361,7 @@ eliminar=()=>{
                    <center>
                        <br/>
                    <div clasName="conteiner-fluid">
-                        <button type="button"  className="btn btn-default" onClick={this.crear}>Crear</button>
+                        <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
                         <button type="button"  className="btn btn-default" id="eliminar" onClick={this.eliminar}>Eliminar</button>
                    </div>
                     </center>
