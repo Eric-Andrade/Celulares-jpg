@@ -13,7 +13,7 @@ class App extends Component {
   state = {  }
   render() {
     return (
-      <Camiones/>
+      <Trabajadores/>
       
     );
   }

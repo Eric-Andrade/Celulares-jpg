@@ -325,6 +325,7 @@ var Tinicial=
             this.setState({
                row: rowvar, toogleform: true
             })
+            document.getElementById("eliminar").style.display="none"
         }
 
         // PARA TRAER
@@ -364,7 +365,6 @@ var Tinicial=
         // ACTUALIZAR
 
         actualizar=()=>{
-            
             console.log("cambio")
             var mandar = this.state.mandar;
             var row = {
@@ -384,6 +384,7 @@ var Tinicial=
             console.log(this.state.T)
             this.refresh()
             this.restaurarForm()
+            this.setState({desactivar:true})
             var T=this.state.T
             var extension=T.length
                 for(var r=1;r<=extension;r++){
@@ -391,8 +392,7 @@ var Tinicial=
                     document.getElementById("checkbox"+r).checked=false
                 }
 
-                document.getElementById("").style.display="none"
-
+                document.getElementById("eliminar").style.display="none"
         }
 
         // PARA ELIMINAR

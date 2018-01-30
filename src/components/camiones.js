@@ -324,7 +324,7 @@ class camiones extends Component {
                         </div>
 
                         <button type="button" className="btn btn-default"onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
-                        <button type="button" className="btn btn-default" id="eliminar" onClick={this.eliminar}>Eliminar</button>
+                        <button type="button" className="btn btn-default" id="eliminar" onClick={this.eliminar.bind()}>Eliminar</button>
                     </center>
                 </div>
 
