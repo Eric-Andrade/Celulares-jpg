@@ -134,19 +134,19 @@ var Tinicial=
                   var FechaAdmision=row.FechaAdmision.trim();
                   var FechaNacimiento=row.FechaNacimiento.trim();     
        
-    if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 0-9]*$/g.test(Curp)){
+    if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 0-9]*$/g.test(Curp)&&Curp===rowVacio.Curp){
         this.setState({desactivar: false})
         console.log("curp correcta")
-        if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Nombre)){
+        if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Nombre)&&Nombre===rowVacio.Nombre){
             this.setState({desactivar:false})
             console.log("nombre correcto")
-            if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Apellidos)){
+            if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Apellidos)&&Apellidos===rowVacio.Apellidos){
                 this.setState({desactivar: false})
                 console.log("Correcto")
-                if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Puesto)){
+                if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Puesto)&&Puesto===rowVacio.Puesto){
                     this.setState({desactivar:false})
                     console.log("puesto correcto")
-                    if(/^[1-9]+[0-9]*([.][0-9])?$/.test(Sueldo)){
+                    if(/^[1-9]+[0-9]*([.][0-9])?$/.test(Sueldo)&&Sueldo===rowVacio.Sueldo){
                         this.setState({desactivar:false})
                         console.log("sueldo correcto")
                         if(FechaNacimiento!=rowVacio.FechaNacimiento){
@@ -251,9 +251,7 @@ var Tinicial=
         ternaria= ()=>{
     
             if(this.state.toogleform){
-                this.crear() 
-                
-
+                this.crear()                 
             }
             this.actualizar()
             
@@ -382,7 +380,7 @@ var Tinicial=
 
             
             console.log(this.state.T)
-            this.refresh()
+            // this.refresh()
             this.restaurarForm()
             this.setState({desactivar:true})
             var T=this.state.T
@@ -413,6 +411,7 @@ var Tinicial=
                 this.setState({T:obj})
                 console.log("Sin elemento: ", this.state.id2)
                 this.restaurarForm()
+                this.setState({desactivar:true})
                 var extension=T.length
                 document.getElementById("eliminar").style.display="none"
 

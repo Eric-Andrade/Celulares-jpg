@@ -6,6 +6,7 @@ import Welcome from'./components/welcome';
 import './App.css';
 import Sucursales from './components/sucursales';
 import Camiones from './components/camiones';
+import trabajadores from './components/trabajadores';
 
 
 
@@ -18,5 +19,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

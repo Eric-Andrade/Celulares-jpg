@@ -160,6 +160,7 @@ class camiones extends Component {
            row: rowvar,toogle:true
 
         })
+        document.getElementById("eliminar").style.display="none"
     }
 
     ternaria=()=>{
@@ -225,6 +226,7 @@ class camiones extends Component {
 
         this.refresh()
         this.restaurarform()
+        this.setState({desactivar:true})
         var ca=this.state.ca
         var extension=ca.length
         for(var r=1;r<=extension;r++){
@@ -265,7 +267,7 @@ class camiones extends Component {
                 <h2 className="text-center">Camiones</h2>
                 <br/>
 
-                <div className="table-conteiner">
+                <div className="table-container">
 
                 <table className="table-container table table-bordered table-striped" >
                     <thead>
@@ -296,6 +298,8 @@ class camiones extends Component {
                         },this)}
                     </tbody>
                 </table>
+
+                </div>
                 <br/>
                 <hr/>
                 <h3 className="text-left">Gestionar Camiones</h3>
@@ -326,7 +330,7 @@ class camiones extends Component {
                         <button type="button" className="btn btn-default"onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
                         <button type="button" className="btn btn-default" id="eliminar" onClick={this.eliminar.bind()}>Eliminar</button>
                     </center>
-                </div>
+                
 
 
             </div>
