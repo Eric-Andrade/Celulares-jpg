@@ -64,8 +64,7 @@ class sucursales extends Component {
    }
 
    Change =(event)=>{
-       var ids=this.state.ID+1
-       this.setState({id2:ids})
+
     var row=this.state.row
     row[event.target.name] = event.target.value.toUpperCase();
     this.setState({row})
@@ -83,35 +82,33 @@ class sucursales extends Component {
         var Direccion=row.Direccion.trim()
         var Telefono=row.Telefono.trim()
 
-        // if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Ciudad)){
-        //     if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Pais)){
-        //             if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]*$/g.test(Direccion)){
-        //                 if(/^[0-9]*$/g.test(Telefono)){
-        //                     this.setState({desactivar:true})
-        //                 }else{this.setState({desactivar:false})
-        //                     console.log("Telefono incorrecto")}
-        //             }else{this.setState({desactivar:false})
-        //                 console.log("Direccion incorrecto")}
-        //     }else{this.setState({desactivar:false})
-        //         console.log("Pais incorrecto")}
-        // }else{this.setState({desactivar:false})
-        //     console.log("Ciudad incorrecto")}
-
-
-            if(Ciudad.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-                console.log("Ciudad correcta")
-                    if(Pais.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-                        console.log("Pais correcto")
-                        if(Direccion.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]")){
-                            console.log("Direccion correcta")
-                                if(Telefono.match("[0-9]{10,13}")){
-                                    this.setState({desactivar:false})
-                                    console.log("Telefono correcto")
-                                }else{this.setState({desactivar:true})}
-                        }else{this.setState({desactivar:true})}
-                    }else{this.setState({desactivar:true})}
-            }else{this.setState({desactivar:true})
-                console.log("Ciudad incorrecta")}
+        if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]$/g.test(Ciudad)){
+            if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]$/g.test(Pais)){
+                    if(/^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]$/g.test(Direccion)){
+                        if(/^[0-9]$/g.test(Telefono)){
+                            this.setState({desactivar:true})
+                        }else{this.setState({desactivar:false})
+                            console.log("Telefono incorrecto")}
+                    }else{this.setState({desactivar:false})
+                        console.log("Direccion incorrecto")}
+            }else{this.setState({desactivar:false})
+                console.log("Pais incorrecto")}
+        }else{this.setState({desactivar:false})
+            console.log("Ciudad incorrecto")}
+            // if(Ciudad.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+            //     console.log("Ciudad correcta")
+            //         if(Pais.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+            //             console.log("Pais correcto")
+            //             if(Direccion.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]")){
+            //                 console.log("Direccion correcta")
+            //                     if(Telefono.match("[0-9]{10,13}")){
+            //                         this.setState({desactivar:false})
+            //                         console.log("Telefono correcto")
+            //                     }else{this.setState({desactivar:true})}
+            //             }else{this.setState({desactivar:true})}
+            //         }else{this.setState({desactivar:true})}
+            // }else{this.setState({desactivar:true})
+            //     console.log("Ciudad incorrecta")}
 
 
    }
@@ -235,8 +232,9 @@ Actualizar=()=>{
      }
      this.state.s[mandar]=row
      
-     this.refresh()
+    //  this.refresh()
      this.restaurarform()
+     this.setState({desactivar:true})
      var s=this.state.s
       var extension=s.length
 
@@ -266,7 +264,7 @@ eliminar=()=>{
     
 
     this.restaurarform()
-
+    this.setState({desactivar:true})
     var extension=s.length
     document.getElementById("eliminar").style.display="none"
 
@@ -279,7 +277,7 @@ eliminar=()=>{
         return (
             <div>
                 
-            <div clasName="container">
+            <div className="container">
             <h2 className="text-center">Sucursales</h2>
             <br/>
                 <div className="table-container margen">
@@ -324,34 +322,33 @@ eliminar=()=>{
                 </div>
             </div>
             <div className="margen container">
-            <br/><br/><br/>
                     <hr/>
 
-                    <h3 clasName="text-left">Gestionar Sucursales</h3>
+                    <h3 className="text-left">Gestionar Sucursales</h3>
                     <br/><br/>
 
                     <div className="form-group row">
                         <div className="col-xs-3">
 
                             <label htmlFor="ex-1">Ciudad</label>
-                            <input className="form-control" value={this.state.row.Ciudad} onChange={this.Change} name="Ciudad" id="Ciudad" type="text" minlength="2" maxlength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
+                            <input className="form-control" value={this.state.row.Ciudad} onChange={this.Change} name="Ciudad" id="Ciudad" type="text" minLength="2" maxLength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
 
                             <br/>
                             
                             <label htmlFor="ex-1">Telefono</label>
-                            <input className="form-control" value={this.state.row.Telefono} onChange={this.Change} name="Telefono" id="Telefono" type="text" minlength="10" maxlength="13" required pattern="[0-9]{10,13}" />    
+                            <input className="form-control" value={this.state.row.Telefono} onChange={this.Change} name="Telefono" id="Telefono" type="text" minLength="10" maxLength="13" required pattern="[0-9]{10,13}" />    
                         </div>
 
                         <div className="col-xs-3 ">
 
                             <label htmlFor="ex-1">País</label>
-                            <input className="form-control" value={this.state.row.Pais} onChange={this.Change} name="Pais" id="Pais" type="text" minlength="2" maxlength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
+                            <input className="form-control" value={this.state.row.Pais} onChange={this.Change} name="Pais" id="Pais" type="text" minLength="2" maxLength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
 
                         </div>
 
                         <div className="col-xs-6">
                             <label htmlFor="ex-1">Dirección</label>
-                            <input className="form-control" value={this.state.row.Direccion} onChange={this.Change} name="Direccion" id="Direccion" type="text" minlength="2" maxlength="100" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]{2,100}" />
+                            <input className="form-control" value={this.state.row.Direccion} onChange={this.Change} name="Direccion" id="Direccion" type="text" minLength="2" maxLength="100" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]{2,100}" />
 
                             <input className="form-control" type="hidden"/>
                         </div>
@@ -360,7 +357,7 @@ eliminar=()=>{
 
                    <center>
                        <br/>
-                   <div clasName="conteiner-fluid">
+                   <div className="conteiner-fluid">
                         <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
                         <button type="button"  className="btn btn-default" id="eliminar" onClick={this.eliminar}>Eliminar</button>
                    </div>
