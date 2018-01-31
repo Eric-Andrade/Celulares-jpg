@@ -77,16 +77,13 @@ class camiones extends Component {
         var Modelo=row.Modelo.trim()
         var Año=row.Año.trim()
 
-        if(/^([A-Z]{2}-[0-9]{2}-[0-9]{3})*$/g.test(Placa)){
-            this.setState({desactivar:false})
+        if(/^([A-Z]{2}-[0-9]{2}-[0-9]{3})$/g.test(Placa)){
             console.log("Placa correcta")
-                if(/^(\d{1,4}KG)*$/g.test(Capacidad)){
-                    this.setState({desactivar:false})
+                if(/^(\d([1-9]{1}[0-9]{2,8}KG))$/g.test(Capacidad)){
                     console.log("Capacidad correcta")
-                        if(/^([A-Z]{2}-\d{2}-\d{3}[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20})*$/g.test(Modelo)){
-                            this.setState({desactivar:false})
+                        if(/^([A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20})$/g.test(Modelo)){
                             console.log("Modelo correcto")
-                                if(/^[0-9]*$/g.test(Año)){
+                                if(/^([0-9]{4})$/g.test(Año)){
                                     this.setState({desactivar:false})
                                     console.log("Año correcto")
                                 }else{this.setState({desactivar:true})}
@@ -96,17 +93,15 @@ class camiones extends Component {
                     console.log("Capacidad incorrecta")}
         }else{this.setState({desactivar:true})
             console.log("Placa incorrecta")}
-
-
-            if(Placa.match("([A-Z]{2}-[0-9]{2}-[0-9]{3}){9,9}")){
-                if(Capacidad.match("(\d{1,4}KG){1,4}")){
-                    if(Modelo.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20}")){
-                        if(Año.match("[0-9]{4,4}")){
-                                this.setState({desactivar:false})
-                        }else{this.setState({desactivar:true})}
-                    }else{this.setState({desactivar:true})}
-                }else{this.setState({desactivar:true})}
-            }else{this.setState({desactivar:true})}
+            // if(Placa.match("([A-Z]{2}-[0-9]{2}-[0-9]{3}){9,9}")){
+            //     if(Capacidad.match("(\d{1,4}KG){1,4}")){
+            //         if(Modelo.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20}")){
+            //             if(Año.match("[0-9]{4,4}")){
+            //                     this.setState({desactivar:false})
+            //             }else{this.setState({desactivar:true})}
+            //         }else{this.setState({desactivar:true})}
+            //     }else{this.setState({desactivar:true})}
+            // }else{this.setState({desactivar:true})}
 
 
  
@@ -224,7 +219,7 @@ class camiones extends Component {
         }
         this.state.ca[mandar]=row
 
-        this.refresh()
+        // this.refresh()
         this.restaurarform()
         this.setState({desactivar:true})
         var ca=this.state.ca
@@ -312,7 +307,7 @@ class camiones extends Component {
                                 <input className="form-control" type="text" value={this.state.row.Placa} name="Placa" id="Placa" onChange={this.Change} minLength="9" maxLength="9" required pattern="([A-Z]{2}-[0-9]{2}-[0-9]{3})"/>
 
                                 <label>Capacidad</label>
-                                <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minLength="1" maxLength="4" required pattern="(\d{1,4}KG){1,4}"/>
+                                <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minLength="1" maxLength="8" required pattern="([1-9]{1}[0-9]{2,8}KG)"/>
                             </div>
 
                             <div className="col-xs-4">
@@ -327,7 +322,7 @@ class camiones extends Component {
 
                         </div>
 
-                        <button type="button" className="btn btn-default"onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
+                        <button type="button" className="btn btn-default"onClick={this.ternaria.bind()}disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
                         <button type="button" className="btn btn-default" id="eliminar" onClick={this.eliminar.bind()}>Eliminar</button>
                     </center>
                 

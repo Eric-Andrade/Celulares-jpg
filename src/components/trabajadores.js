@@ -134,23 +134,17 @@ var Tinicial=
                   var FechaAdmision=row.FechaAdmision.trim();
                   var FechaNacimiento=row.FechaNacimiento.trim();     
        
-    if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 0-9]*$/g.test(Curp)&&Curp===rowVacio.Curp){
-        this.setState({desactivar: false})
+    if(/^([A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1})*$/g.test(Curp)&&Curp!=rowVacio.Curp){
         console.log("curp correcta")
-        if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Nombre)&&Nombre===rowVacio.Nombre){
-            this.setState({desactivar:false})
+        if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Nombre)&&Nombre!=rowVacio.Nombre){
             console.log("nombre correcto")
-            if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Apellidos)&&Apellidos===rowVacio.Apellidos){
-                this.setState({desactivar: false})
+            if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Apellidos)&&Apellidos!=rowVacio.Apellidos){
                 console.log("Correcto")
-                if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Puesto)&&Puesto===rowVacio.Puesto){
-                    this.setState({desactivar:false})
+                if(/^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]*$/g.test(Puesto)&&Puesto!=rowVacio.Puesto){
                     console.log("puesto correcto")
-                    if(/^[1-9]+[0-9]*([.][0-9])?$/.test(Sueldo)&&Sueldo===rowVacio.Sueldo){
-                        this.setState({desactivar:false})
+                    if(/^[1-9]+[0-9]*([.][0-9])?$/.test(Sueldo)&&Sueldo!=rowVacio.Sueldo){
                         console.log("sueldo correcto")
                         if(FechaNacimiento!=rowVacio.FechaNacimiento){
-                            this.setState({desactivar:false})
                             console.log("fecha nacimiento correcta")
                             if(FechaAdmision!=rowVacio.FechaAdmision){
                                 this.setState({desactivar:false})
@@ -183,24 +177,22 @@ var Tinicial=
                             }else{this.setState({desactivar:true})
                             console.log("fecha admision incorrecta")}
 
-
-
-                            if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
-                                if(Nombre.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-                                    if(Apellidos.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-                                        if(FechaNacimiento!=rowVacio.FechaNacimiento){
-                                            if(FechaAdmision!=rowVacio.FechaAdmision){
-                                                if(Sueldo.match("[0-9]+[^.]{1,15}")){
-                                                    if(Puesto.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-                                                            this.setState({Desactivado:false})
-                                                    }else{this.setState({Desactivado:true})}
-                                                }else{this.setState({Desactivado:true})}
-                                            }else{this.setState({Desactivado:true})}
-                                        }else{this.setState({Desactivado:true})}
-                                    }else{this.setState({Desactivado:true})}             
-                                }else{this.setState({Desactivado:true})}
-                            }else{this.setState({Desactivado:true})
-                        }
+                        //     if(Curp.match("^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$")){
+                        //         if(Nombre.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                        //             if(Apellidos.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                        //                 if(FechaNacimiento!=rowVacio.FechaNacimiento){
+                        //                     if(FechaAdmision!=rowVacio.FechaAdmision){
+                        //                         if(Sueldo.match("[0-9]+[^.]{1,15}")){
+                        //                             if(Puesto.match("^[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                        //                                     this.setState({desactivar:false})
+                        //                             }else{this.setState({desactivar:true})}
+                        //                         }else{this.setState({desactivar:true})}
+                        //                     }else{this.setState({desactivar:true})}
+                        //                 }else{this.setState({desactivar:true})}
+                        //             }else{this.setState({desactivar:true})}             
+                        //         }else{this.setState({desactivar:true})}
+                        //     }else{this.setState({desactivar:true})
+                        // }
 
 
   }
@@ -216,20 +208,20 @@ var Tinicial=
             if (ext!=idcheck){
                 for(var x=1;x!=idcheck;x++){
                 document.getElementById('checkbox'+x).checked = false;
-                // console.log("Desactivado= ",x)
+                // console.log("desactivar= ",x)
                 }
             }
             if(ext===idcheck){
             var exte = ext-1; 
             for(exte; exte!=0;exte--){
                 document.getElementById('checkbox'+exte).checked = false;
-                // console.log("Desactivado= ",exte)
+                // console.log("desactivar= ",exte)
 
             }
             }
             for(ext; ext!=idcheck; ext--){
                 document.getElementById('checkbox'+ext).checked = false;
-                // console.log("Desactivado= ",ext)
+                // console.log("desactivar= ",ext)
 
             }
             if(document.getElementById('checkbox'+idcheck).checked){
@@ -300,14 +292,7 @@ var Tinicial=
                     })
                     this.restaurarForm()
         }
-
-        // PARA CURP REPETIDA
-        // repetido=()=>{
-        //     if(Curp===row.Curp){
-        //         // "Lo sentimos, éste trabajador ya existe"
-        //     }
-        // }
-
+        
         //  RESTAURAR FORMULARIO
         restaurarForm = () =>{
             let rowvar = {
