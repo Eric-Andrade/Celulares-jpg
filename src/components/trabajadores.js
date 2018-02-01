@@ -202,6 +202,7 @@ var Tinicial=
             var T=this.state.T;
             var ext= T.length;
             var mandar=idcheck-1;
+            this.setState({desactivar:true})
             // console.log(idcheck)
             
  

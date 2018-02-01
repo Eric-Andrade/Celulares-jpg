@@ -116,6 +116,7 @@ class sucursales extends Component {
        var s=this.state.s
        var ext=s.length
        var mandar=idcheck-1
+       this.setState({desactivar:true})
 
        if (ext!=idcheck){
         for(var x=1;x!=idcheck;x++){
@@ -325,7 +326,7 @@ eliminar=()=>{
                     <hr/>
 
                     <h3 className="text-left">Gestionar Sucursales</h3>
-                    <br/><br/>
+                    <br/>
 
                     <div className="form-group row">
                         <div className="col-xs-3">

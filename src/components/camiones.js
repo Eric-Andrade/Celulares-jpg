@@ -111,6 +111,7 @@ class camiones extends Component {
         var ca=this.state.ca
         var ext=ca.length
         var mandar=idcheck-1
+        this.setState({desactivar:true})
 
         if (ext!=idcheck){
             for(var x=1;x!=idcheck;x++){
