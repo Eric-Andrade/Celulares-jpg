@@ -265,7 +265,7 @@ class camiones extends Component {
                 <h1 className="text-center">Camiones</h1>
                 <br/>
 
-                <div className="table-container letratabla">
+                <div className="table-container" id="letratabla">
 
                 <table className="table-container table table-bordered table-striped" >
                     <thead>
@@ -276,7 +276,6 @@ class camiones extends Component {
                         <th>Modelo</th>
                         <th>Año</th>
                     </thead>
-
                     <tbody>
                         {this.state.ca.map(function(ca,i){
                             var iE=i+1
@@ -291,10 +290,14 @@ class camiones extends Component {
                                     <td>{ca.Capacidad}</td>
                                     <td>{ca.Modelo}</td>
                                     <td>{ca.Año}</td>
+
                                 </tr>
                             )
                         },this)}
+          
                     </tbody>
+
+                  
                 </table>
 
                 </div>
