@@ -279,7 +279,7 @@ eliminar=()=>{
             <div>
                 
             <div className="container">
-            <h2 className="text-center">Sucursales</h2>
+            <h1 className="text-center">Sucursales</h1>
             <br/>
                 <div className="table-container margen">
                 <table className="table-container table table-bordered table-striped">
@@ -324,31 +324,31 @@ eliminar=()=>{
             </div>
             <div className="margen container">
                     <hr/>
-
-                    <h3 className="text-left">Gestionar Sucursales</h3>
+                    <br/>
+                    <h2 className="text-center">Gestionar Sucursales</h2>
                     <br/>
 
                     <div className="form-group row">
-                        <div className="col-xs-3">
+                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
-                            <label htmlFor="ex-1">Ciudad</label>
+                            <label htmlFor="ex-1" className="letra">Ciudad</label>
                             <input className="form-control" value={this.state.row.Ciudad} onChange={this.Change} name="Ciudad" id="Ciudad" type="text" minLength="2" maxLength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
 
                             <br/>
                             
-                            <label htmlFor="ex-1">Telefono</label>
+                            <label htmlFor="ex-1" className="letra">Telefono</label>
                             <input className="form-control" value={this.state.row.Telefono} onChange={this.Change} name="Telefono" id="Telefono" type="text" minLength="10" maxLength="13" required pattern="[0-9]{10,13}" />    
                         </div>
 
-                        <div className="col-xs-3 ">
+                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
-                            <label htmlFor="ex-1">País</label>
+                            <label htmlFor="ex-1" className="letra">País</label>
                             <input className="form-control" value={this.state.row.Pais} onChange={this.Change} name="Pais" id="Pais" type="text" minLength="2" maxLength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" />
 
                         </div>
 
-                        <div className="col-xs-6">
-                            <label htmlFor="ex-1">Dirección</label>
+                        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label htmlFor="ex-1" className="letra">Dirección</label>
                             <input className="form-control" value={this.state.row.Direccion} onChange={this.Change} name="Direccion" id="Direccion" type="text" minLength="2" maxLength="100" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]{2,100}" />
 
                             <input className="form-control" type="hidden"/>
@@ -358,10 +358,10 @@ eliminar=()=>{
 
                    <center>
                        <br/>
-                   <div className="conteiner-fluid">
-                        <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
-                        <button type="button"  className="btn btn-default" id="eliminar" onClick={this.eliminar}>Eliminar</button>
-                   </div>
+                   
+                        <button type="button"  className="btn btn-default margenbtn" onClick={this.ternaria.bind()} disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
+                        <button type="button"  className="btn btn-default margenbtn" id="eliminar" onClick={this.eliminar}>Eliminar</button>
+                  
                     </center>
             </div>
         </div>

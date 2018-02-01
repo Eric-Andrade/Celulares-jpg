@@ -71,5 +71,19 @@ input:focus:invalid{
 
 .table-container{
 max-height: 400px;
+margin-bottom: 0 !important;
 overflow-y: scroll;
   }
+.cenin{
+  margin: 0 50px;
+  text-align: center
+}
+.margenbtn{
+  margin: 20px
+}
+.letra{
+  font-size: 20px
+}
+.letratabla{
+  font-size: 17px;
+}

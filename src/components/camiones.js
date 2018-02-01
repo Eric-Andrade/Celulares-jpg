@@ -262,10 +262,10 @@ class camiones extends Component {
     render() {
         return (
             <div className="container">
-                <h2 className="text-center">Camiones</h2>
+                <h1 className="text-center">Camiones</h1>
                 <br/>
 
-                <div className="table-container">
+                <div className="table-container letratabla">
 
                 <table className="table-container table table-bordered table-striped" >
                     <thead>
@@ -300,34 +300,35 @@ class camiones extends Component {
                 </div>
                 <br/>
                 <hr/>
-                <h3 className="text-left">Gestionar Camiones</h3>
-                <br/>
                 
-                    <center>
-                        <div className="form-group row">
-                            <div className="col-xs-4">
-                                <label>Placa</label>
+                    
+                        <div className="form-group row cenin">
+                        <h2>Gestionar Camiones</h2>
+                        <br/>
+                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <label className="letra">Placa</label>
                                 <input className="form-control" type="text" value={this.state.row.Placa} name="Placa" id="Placa" onChange={this.Change} minLength="9" maxLength="9" required pattern="([A-Z]{2}-[0-9]{2}-[0-9]{3})"/>
 
-                                <label>Capacidad</label>
+                                <label className="letra">Capacidad</label>
                                 <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minLength="3" maxLength="8" required pattern="([1-9]{1}([0-9]{1,8})*KG)"/>
                             </div>
 
-                            <div className="col-xs-4">
-                                <label>Modelo</label>
+                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <label className="letra">Modelo</label>
                                 <input className="form-control" type="text" value={this.state.row.Modelo} name="Modelo" id="Modelo" onChange={this.Change} minLength="3" maxLength="20" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20}"/>
 
-                                <label>Año</label>
+                                <label className="letra">Año</label>
                                 <input className="form-control" type="text" value={this.state.row.Año} name="Año" id="Año" onChange={this.Change} minLength="4" maxLength="4" required pattern="[1-9]{1}([0-9]{1,4})*"/>
 
                                 <input type="hidden"></input>
-                            </div>
 
+                            </div>
+                            <button type="button" className="btn btn-default margenbtn"onClick={this.ternaria.bind()}disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
+                            <button type="button" className="btn btn-default margenbtn" id="eliminar" onClick={this.eliminar.bind()}>Eliminar</button>
                         </div>
 
-                        <button type="button" className="btn btn-default"onClick={this.ternaria.bind()}disabled={this.state.desactivar}>{this.state.toogle ? 'Crear' : 'Actualizar'}</button>
-                        <button type="button" className="btn btn-default" id="eliminar" onClick={this.eliminar.bind()}>Eliminar</button>
-                    </center>
+                        
+                  
                 
 
 

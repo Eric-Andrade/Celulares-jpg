@@ -73,3 +73,16 @@ input:focus:invalid{
 max-height: 400px;
 overflow-y: scroll;
   }
+/* .cenin{
+  margin: 0 50px;
+  text-align: center
+} */
+.margenbtn{
+  margin: 10 px
+}
+.letra{
+  font-size: 34px
+}
+/* .letratabla{
+  font-size: 1px;
+} */

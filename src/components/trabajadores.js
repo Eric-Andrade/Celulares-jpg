@@ -414,7 +414,7 @@ var Tinicial=
                      {/* TABLA */}
 
                     <div className="container">
-                        <h2 className='text-center'>Trabajadores</h2>
+                        <h1 className='text-center'>Trabajadores</h1>
                         <br/>
 <div className="table-container ">
 {/* scrollbar inconcluso> */}
@@ -466,42 +466,41 @@ var Tinicial=
         </div>
                         <br/><br/><hr/>
                       
-                          <h3 className="text-left">Gestionar Trabajadores</h3>
-        
-                            
+                          <h2 className="text-center">Gestionar Trabajadores</h2>
+                          <br/>
                             <center>
                             <div className="form-group row ">
 
                    
-                            <div className="col-xs-4">
-                                <label htmlFor="ex1">Nombre</label>
+                            <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <label htmlFor="ex1" className="letra">Nombre</label>
                                 <input className="form-control" value={this.state.row.Nombre} name="Nombre" id="Nombre" onChange={this.change} type="text" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" required/>
 
-                                <label htmlFor="ex1">Puesto</label>
+                                <label htmlFor="ex1"  className="letra">Puesto</label>
                                 <input className="form-control" value={this.state.row.Puesto} name="Puesto" id="Puesto" onChange={this.change} type="text" required pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}"/>
 
-                                <label htmlFor="ex2">Fecha de Nacimiento</label>
+                                <label htmlFor="ex2"  className="letra">Fecha de Nacimiento</label>
                                 <input className="form-control" value={this.state.row.FechaNacimiento} name="FechaNacimiento" id="FechaNacimiento"  onChange={this.change} type={ this.state.tipo } onFocus={this.onfocus} onBlur={this.onBlur} required/>
 
 
                             </div>
                      
-                            <div className="col-xs-4">
-                                <label htmlFor="ex1">Apellidos</label>
+                            <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <label htmlFor="ex1"  className="letra">Apellidos</label>
                                 <input className="form-control" value={this.state.row.Apellidos} name="Apellidos" id="Apellidos" onChange={this.change} type="text" pattern="[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}" required/>
 
                                 
-                                <label htmlFor="ex3">Sueldo</label>
+                                <label htmlFor="ex3"  className="letra">Sueldo</label>
                                 <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="[0-9]+[^.]{1,15}"  />
 
-                                <label htmlFor="ex2">Fecha de Admisión</label>
+                                <label htmlFor="ex2"  className="letra">Fecha de Admisión</label>
                                 <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2} required/>
 
                                 <input className="form-control" value={this.state.row.id2} name="ID" id="ID" onChange={this.change} type="hidden"/>
 
                             </div>
-                            <div className="col-xs-3">
-                            <label htmlFor="ex3">Curp</label>
+                            <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <label htmlFor="ex3"  className="letra">Curp</label>
                                 <input className="form-control"  value={this.state.row.Curp} name="Curp" id="Curp" onChange={this.change} type="text" required pattern="^[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM]{1}(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]{1}[0-9]{1}$"/> 
                             </div>
                     </div>
@@ -509,8 +508,8 @@ var Tinicial=
                    
 
                                
-                                <button type="button"  className="btn btn-default" onClick={this.ternaria.bind()}disabled={this.state.desactivar}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
-                                <button type="button" id="eliminar" className="btn btn-default" onClick={this.eliminar.bind()}>Eliminar</button>
+                                <button type="button"  className="btn btn-default margenbtn" onClick={this.ternaria.bind()}disabled={this.state.desactivar}>{this.state.toogleform ? 'Crear' : 'Actualizar'}</button>
+                                <button type="button" id="eliminar" className="btn btn-default margenbtn" onClick={this.eliminar.bind()}>Eliminar</button>
                                 {/* <button type="button"  className="btn btn-default" onClick={this.eliminar.bind()}>Cancelar</button> */}
                                  
 
