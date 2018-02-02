@@ -6,7 +6,6 @@ import Welcome from'./components/welcome';
 import './App.css';
 import Sucursales from './components/sucursales';
 import Camiones from './components/camiones';
-import trabajadores from './components/trabajadores';
 
 
 

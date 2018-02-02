@@ -34,13 +34,14 @@
       transition: left .3s ease, background .3s ease, box-shadow .1s ease; 
     }
   .custom-checkbox .custom-control-input:checked ~ .custom-control-indicator {
-    background-color: #84c7c1;
+    background-color: #65bdb5;
     background-image: none;
     box-shadow: none !important; 
   }
     .custom-checkbox .custom-control-input:checked ~ .custom-control-indicator:after {
-      background-color: #84c7c1;
+      background-color: #65bdb5;
       left: 15px; 
+
     }
   .custom-checkbox .custom-control-input:focus ~ .custom-control-indicator {
     box-shadow: none !important; 
@@ -56,8 +57,8 @@
   }
 
 input:valid{
-border-color: rgb(0, 138, 252);
-box-shadow: 0px 0px 10px #25c6db;
+border-color: rgba(123, 180, 139, 0.856);
+box-shadow: rgba(119, 185, 165, 0.856);
 
 
 }
@@ -89,5 +90,11 @@ overflow-y: scroll;
 }
 tr:hover,
 td:hover {
-background-color: yellow !important;
+background-color: rgba(210, 243, 225, 0.986) !important;
 }
+/* tr:active,
+td:active
+idcheck:active{
+  background-color: #ec2222 !important;
+} */
+
