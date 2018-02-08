@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './celulares.css';
-var sinicial=
+var ceinicial=
 [
     {
         "IdCelular":1,
@@ -41,14 +41,62 @@ var sinicial=
 class celulares extends Component {
     constructor(props){
         super(props)
-        this.state={
+            this.state={
+                ce:ceinicial,
+                row: {
+                    ID:0,
+                    Marca:"",
+                    Modelo:"",
+                    Ensamblado:"",
+                    Precio:"",
+                },
+                // id:3,
+                // id2:null,
+                // mandar:null,
+                // toogle:true,
+                // desactivar:true
+    
 
         }
     }
     render() {
         return (
-            <div>
+            <div className="container">
+                <h1>Celulares</h1>
+                <br/>
+
+                <div className="table-container" >
+                    <table>
+                        <thead>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Ensamblado</th>
+                            <th>Precio</th>
+
+                        </thead>
+
+                        <tbody>
+                            {this.state.ce.map(function(i,ce) {
+                                var iE=i+1
+                                return(
+                                    <tr key={i}>
+                                        
+                                        <td>{ce.ID}</td>
+                                        <td>{ce.Marca}</td>
+                                        <td>{ce.Modelo}</td>
+                                        <td>{ce.Ensamblado}</td>
+                                        <td>{ce.Precio}</td>
+                                        
+                                    </tr>
+                                )
+                                
+                            },this)}
+                        </tbody>
+                    </table>
                 </div>
+            </div>
             
         );
     }
