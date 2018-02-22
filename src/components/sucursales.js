@@ -95,21 +95,20 @@ class sucursales extends Component {
                 console.log("Pais incorrecto")}
         }else{this.setState({desactivar:false})
             console.log("Ciudad incorrecto")}
-            // if(Ciudad.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-            //     console.log("Ciudad correcta")
-            //         if(Pais.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
-            //             console.log("Pais correcto")
-            //             if(Direccion.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]")){
-            //                 console.log("Direccion correcta")
-            //                     if(Telefono.match("[0-9]{10,13}")){
-            //                         this.setState({desactivar:false})
-            //                         console.log("Telefono correcto")
-            //                     }else{this.setState({desactivar:true})}
-            //             }else{this.setState({desactivar:true})}
-            //         }else{this.setState({desactivar:true})}
-            // }else{this.setState({desactivar:true})
-            //     console.log("Ciudad incorrecta")}
-
+            if(Ciudad.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                console.log("Ciudad correcta")
+                    if(Pais.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{2,20}")){
+                        console.log("Pais correcto")
+                        if(Direccion.match("[A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ00-9\.#.;,? ]")){
+                            console.log("Direccion correcta")
+                                if(Telefono.match("[0-9]{10,13}")){
+                                    this.setState({desactivar:false})
+                                    console.log("Telefono correcto")
+                                }else{this.setState({desactivar:true})}
+                        }else{this.setState({desactivar:true})}
+                    }else{this.setState({desactivar:true})}
+            }else{this.setState({desactivar:true})
+                console.log("Ciudad incorrecta")}
 
    }
    Check=(idcheck)=>{
@@ -195,7 +194,6 @@ class sucursales extends Component {
             cambiaragg:1, id:ids
         })
         this.restaurarform()
-
 
 }
 

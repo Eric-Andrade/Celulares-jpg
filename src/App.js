@@ -14,7 +14,7 @@ class App extends Component {
   state = {  }
   render() {
     return (
-      <Celulares/>
+      <Trabajadores/>
       
     );
   }
