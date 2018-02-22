@@ -88,8 +88,7 @@ overflow-y: scroll;
 #letratabla{
   font-size: 17px;
 }
-tr:hover,
-td:hover {
+cool:hover{
 background-color: rgba(210, 243, 225, 0.986) !important;
 }
 /* tr:active,

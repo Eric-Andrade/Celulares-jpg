@@ -4,7 +4,7 @@ var cainicial=[
     {
         "ID": 1,
         "Placa": "NK-64-956",
-        "Capacidad": "80KG",
+        "Capacidad": "800KG",
         "Modelo": "SCANIA",
         "Año": "2018"
     },
@@ -78,7 +78,7 @@ class camiones extends Component {
 
         if(/^([A-Z]{2}-[0-9]{2}-[0-9]{3})$/g.test(Placa)){
             console.log("Placa correcta")
-                if(/^([1-9]{1}([0-9]{1,8})*KG)$/g.test(Capacidad)){
+                if(/^(([1-9]{1}[0-9]{2,8}KG))$/g.test(Capacidad)){
                     console.log("Capacidad correcta")
                         if(/^([A-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ0 ]{3,20})$/g.test(Modelo)){
                             console.log("Modelo correcto")
@@ -280,7 +280,7 @@ class camiones extends Component {
                         {this.state.ca.map(function(ca,i){
                             var iE=i+1
                             return(
-                                <tr key={i}>
+                                <tr key={i} className="cool">
                                     <td><label className="custom-control custom-checkbox">
                                     <input type="checkbox" className="custom-control-input desc" id={"checkbox"+iE} onClick={()=>this.Check(iE)} />
                                     <span className="custom-control-indicator " id={"checkbox"+iE} onClick={()=>this.Check(iE)} ></span>
@@ -313,7 +313,7 @@ class camiones extends Component {
                                 <input className="form-control" type="text" value={this.state.row.Placa} name="Placa" id="Placa" onChange={this.Change} minLength="9" maxLength="9" required pattern="([A-Z]{2}-[0-9]{2}-[0-9]{3})"/>
 
                                 <label className="letra">Capacidad</label>
-                                <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minLength="3" maxLength="8" required pattern="([1-9]{1}([0-9]{1,8})*KG)"/>
+                                <input className="form-control" type="text" value={this.state.row.Capacidad} name="Capacidad" id="Capacidad" onChange={this.Change} minLength="3" maxLength="8" required pattern="(([1-9]{1}[0-9]{2,8}KG))"/>
                             </div>
 
                             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">

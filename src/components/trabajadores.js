@@ -441,7 +441,7 @@ var Tinicial=
                           {this.state.T.map(function(t,i){
                               var iE=i+1;
                             return  (
-                            <tr  className="cool" key={i}>
+                            <tr key={i} className="cool">
                                 <td><label className="custom-control custom-checkbox">
                                     <input type="checkbox" className="custom-control-input desc" id={'checkbox'+iE} onClick={()=>this.check(iE)}/>
                                     <span className="custom-control-indicator" id={'checkbox'+iE} onClick={()=>this.check(iE)}></span>
@@ -488,7 +488,7 @@ var Tinicial=
 
                                 
                                 <label htmlFor="ex3"  className="letra">Sueldo</label>
-                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="[0-9]+[^.]{1,5}"  />
+                                <input className="form-control" value={this.state.row.Sueldo} name="Sueldo" id="Sueldo" onChange={this.change} type="text" required minlength="4" maxlength="5" pattern="[1-9]+[0-9]*([.][0-9])?"  />
 
                                 <label htmlFor="ex2"  className="letra">Fecha de Admisión</label>
                                 <input className="form-control" value={this.state.row.FechaAdmision} name="FechaAdmision" id="FechaAdmision"  onChange={this.change} type={ this.state.tipo2 } onFocus={this.onfocus2} onBlur={this.onBlur2} required/>

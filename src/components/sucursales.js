@@ -298,7 +298,7 @@ eliminar=()=>{
                     {this.state.s.map(function(s,i){
                         var iE=i+1;
                         return(
-                            <tr key={i}>
+                            <tr key={i}className="cool">
                              <td><label className="custom-control custom-checkbox">
                                     <input type="checkbox" className="custom-control-input desc" id={"checkbox"+iE} onClick={()=>this.Check(iE)} />
                                     <span className="custom-control-indicator " id={"checkbox"+iE} onClick={()=>this.Check(iE)} ></span>
